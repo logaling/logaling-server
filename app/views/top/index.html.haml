@@ -2,3 +2,8 @@
   %h1 Use logaling
   %p and translate the world.
   = link_to raw('Learn more &raquo;'), 'http://logaling.github.com/', :class => 'btn btn-primary btn-large'
+
+%h2 Projects using logaling
+- @projects.each do |project|
+  .well
+    = link_to project.full_name, project
