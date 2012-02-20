@@ -7,3 +7,6 @@
 - @projects.each do |project|
   .well
     = link_to project.full_name, project
+
+%p
+  = link_to 'Add new project', new_github_project_path, :class => 'btn btn-large btn-primary'
