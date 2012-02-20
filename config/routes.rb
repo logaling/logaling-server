@@ -3,7 +3,10 @@ LogalingServer::Application.routes.draw do
 
   get "top/index"
 
-  resources :github_projects
+  resources :github_projects,
+    :path => 'github',
+    :constraints => {:id => %r{[^/]+/[^/]+}} do
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

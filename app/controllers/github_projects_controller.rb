@@ -13,7 +13,7 @@ class GithubProjectsController < ApplicationController
   # GET /github_projects/1
   # GET /github_projects/1.json
   def show
-    @github_project = GithubProject.find(params[:id])
+    @github_project = GithubProject.of(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class GithubProjectsController < ApplicationController
 
   # GET /github_projects/1/edit
   def edit
-    @github_project = GithubProject.find(params[:id])
+    @github_project = GithubProject.of(params[:id])
   end
 
   # POST /github_projects
@@ -56,7 +56,7 @@ class GithubProjectsController < ApplicationController
   # PUT /github_projects/1
   # PUT /github_projects/1.json
   def update
-    @github_project = GithubProject.find(params[:id])
+    @github_project = GithubProject.of(params[:id])
 
     respond_to do |format|
       if @github_project.update_attributes(params[:github_project])
@@ -72,7 +72,7 @@ class GithubProjectsController < ApplicationController
   # DELETE /github_projects/1
   # DELETE /github_projects/1.json
   def destroy
-    @github_project = GithubProject.find(params[:id])
+    @github_project = GithubProject.of(params[:id])
     @github_project.destroy
 
     respond_to do |format|
