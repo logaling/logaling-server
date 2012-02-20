@@ -5,8 +5,8 @@ LogalingServer::Application.routes.draw do
 
   resources :github_projects,
     :path => 'github',
-    :constraints => {:id => %r{[^/]+/[^/]+}} do
-  end
+    :constraints => {:id => %r{[^/]+/[^/]+}},
+    :only => [:show, :new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
