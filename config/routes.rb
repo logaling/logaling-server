@@ -1,4 +1,6 @@
 LogalingServer::Application.routes.draw do
+  get "search/index", :as => :search
+
   get "top/index"
 
   resources :github_projects
