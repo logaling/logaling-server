@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Owner:
+  = @github_project.owner
+%p
+  %b Name:
+  = @github_project.name
+
+= link_to 'Edit', edit_github_project_path(@github_project)
+\|
+= link_to 'Back', github_projects_path

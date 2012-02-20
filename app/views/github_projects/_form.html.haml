@@ -1,0 +1,16 @@
+= form_for @github_project do |f|
+  -if @github_project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@github_project.errors.count, "error")} prohibited this github_project from being saved:"
+      %ul
+        - @github_project.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :owner
+    = f.text_field :owner
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'
