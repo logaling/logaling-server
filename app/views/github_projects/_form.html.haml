@@ -6,11 +6,12 @@
         - @github_project.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :owner
+  -# TODO should be just one text field
+  .well
+    http://github.com/
     = f.text_field :owner
-  .field
-    = f.label :name
+    \/
     = f.text_field :name
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => 'btn btn-primary'
