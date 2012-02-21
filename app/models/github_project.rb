@@ -1,6 +1,6 @@
 class GithubProject < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :owner
-  validates_format_of :name, :name, :with => /\A[0-9a-z\-_]+\z/
+  validates_format_of :owner, :name, :with => /\A[0-9a-z\-_]+\z/
 
   class << self
     def of(id)
