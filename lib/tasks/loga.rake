@@ -7,4 +7,9 @@ namespace :loga do
       $stderr.puts "[#{project.full_name}] synchronized"
     end
   end
+
+  desc "Execute loga index"
+  task :index => :environment do
+    LOGALING.index
+  end
 end
