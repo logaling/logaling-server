@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 
-# Ignore
+# Ignore project specific directories.
 /repositories
+/.logaling.d
