@@ -1,5 +1,7 @@
-%h1
-  Results for query
-  = "'%s'" % @query
-
-%p TODO
+- if @terms.present?
+  - @terms.each do |term|
+    = render :partial => 'shared/term', :locals => {:term => term}
+- else
+  .alert.alert-info
+    %strong Not found.
+    Try another query.
