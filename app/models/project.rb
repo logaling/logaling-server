@@ -12,7 +12,11 @@ module Project
     unless with_logaling?
       raise "Project does not have .logaling"
     end
-    LOGALING.register(dot_logaling_path, logaling_name)
+    begin
+      LOGALING.register(dot_logaling_path, logaling_name)
+    rescue Logaling::GlossaryAlreadyRegistered
+      # do nothing
+    end
     LOGALING.index
   end
 end
