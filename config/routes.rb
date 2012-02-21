@@ -1,5 +1,5 @@
 LogalingServer::Application.routes.draw do
-  get "search/index", :as => :search
+  get "search", :as => :search, :controller => 'search', :action => :index
 
   get "top/index"
 
