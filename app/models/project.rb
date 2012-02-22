@@ -1,4 +1,8 @@
 module Project
+  def self.included(klass)
+    klass.set_callback :destroy, :before, :remove_repository!
+  end
+
   def dot_logaling_path
     File.join(repository_path, '.logaling')
   end
@@ -18,5 +22,10 @@ module Project
       # do nothing
     end
     LOGALING.index
+  end
+
+  def remove_repository!
+    LOGALING.unregister(logaling_name)
+    FileUtils.rm_rf(repository_path)
   end
 end
