@@ -10,6 +10,6 @@ namespace :loga do
 
   desc "Execute loga index"
   task :index => :environment do
-    LOGALING.index
+    LogalingServer.repository.index
   end
 end

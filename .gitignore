@@ -15,5 +15,4 @@
 /tmp
 
 # Ignore project specific directories.
-/repositories
-/.logaling.d
+/data.*

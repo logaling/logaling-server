@@ -2,6 +2,6 @@ class SearchController < ApplicationController
   def index
     @query = params[:query]
 
-    @terms = LOGALING.lookup(@query, nil)
+    @terms = LogalingServer.repository.lookup(@query, nil)
   end
 end

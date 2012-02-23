@@ -40,3 +40,8 @@ gem 'haml-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'logaling-command', :git => 'git://github.com/logaling/logaling-command.git', :require => 'logaling'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+end

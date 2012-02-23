@@ -17,15 +17,15 @@ module Project
       raise "Project does not have .logaling"
     end
     begin
-      LOGALING.register(dot_logaling_path, logaling_name)
+      LogalingServer.repository.register(dot_logaling_path, logaling_name)
     rescue Logaling::GlossaryAlreadyRegistered
       # do nothing
     end
-    LOGALING.index
+    LogalingServer.repository.index
   end
 
   def remove_repository!
-    LOGALING.unregister(logaling_name)
+    LogalingServer.repository.unregister(logaling_name)
     FileUtils.rm_rf(repository_path)
   end
 end

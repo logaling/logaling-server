@@ -21,7 +21,7 @@ class GithubProject < ActiveRecord::Base
   end
 
   def repository_path
-    File.join(Rails.root, 'repositories', full_name)
+    File.join(LogalingServer.repository_base, full_name)
   end
 
   def remote_repository_url
