@@ -1,0 +1,4 @@
+---
+- source_term: 'logaling server'
+  target_term: 'logaling サーバ'
+  note: ''
