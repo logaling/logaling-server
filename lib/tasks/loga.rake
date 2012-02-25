@@ -12,4 +12,15 @@ namespace :loga do
   task :index => :environment do
     LogalingServer.repository.index
   end
+
+  desc "Import external glossaries"
+  task :import => :environment do
+    require 'logaling/external_glossary'
+    Logaling::ExternalGlossary.load
+    glossaries = Logaling::ExternalGlossary.list
+    glossaries.each do |glossary_class|
+      LogalingServer.repository.import glossary_class.new
+    end
+    LogalingServer.repository.index
+  end
 end
