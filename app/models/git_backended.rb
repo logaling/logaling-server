@@ -1,4 +1,8 @@
 module GitBackended
+  def branch
+    "master" # TODO
+  end
+
   def checkout!
     raise "not valid" unless valid?
 
@@ -7,7 +11,7 @@ module GitBackended
         unless system "git", "reset", "--hard"
           raise "reset failed"
         end
-        unless system "git", "pull", "--force"
+        unless system "git", "pull", "--force", "origin", branch
           raise "pull failed"
         end
       end
