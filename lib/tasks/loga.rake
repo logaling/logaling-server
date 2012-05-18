@@ -18,7 +18,8 @@ namespace :loga do
     require 'logaling/external_glossary'
     Logaling::ExternalGlossary.load
     glossaries = Logaling::ExternalGlossary.list
-    glossaries.each do |glossary_class|
+    supported_glossaries = glossaries - [Logaling::Tmx]
+    supported_glossaries.each do |glossary_class|
       LogalingServer.repository.import glossary_class.new
     end
     LogalingServer.repository.index
