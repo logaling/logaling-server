@@ -39,7 +39,7 @@ gem 'haml-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'logaling-command', :git => 'git://github.com/logaling/logaling-command.git', :require => 'logaling', :ref => '309872ca796426a2e3cd2c757641405a6a2b8070' # TODO: use latest logaling-command
+gem 'logaling-command', :git => 'git://github.com/logaling/logaling-command.git', :require => 'logaling'
 
 group :development, :test do
   gem 'rspec-rails'
