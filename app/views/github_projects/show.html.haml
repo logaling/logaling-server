@@ -3,3 +3,6 @@
 .well
   %h2= @github_project.full_name
   %p= @github_project.remote_repository_url
+  %p
+    - @github_project.glossaries.each do |glossary|
+      = [glossary.source_language, glossary.target_language].join('-')

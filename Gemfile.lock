@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 627c99be6c500e8a87f9e9aa2fa33c8e55b4dfac
+  revision: b6be24a2072aa5344a659596920715833d85bc08
+  ref: b6be24a2072aa5344a659596920715833d85bc08
   specs:
     logaling-command (0.1.6)
       activesupport

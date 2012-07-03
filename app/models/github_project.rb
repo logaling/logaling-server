@@ -32,4 +32,13 @@ class GithubProject < ActiveRecord::Base
   def logaling_name
     "github-%s-%s" % [owner, name]
   end
+
+  def glossaries
+    registered_project.glossaries
+  end
+
+  private
+  def registered_project
+    LogalingServer.repository.find_project(logaling_name)
+  end
 end
