@@ -3,3 +3,8 @@
 .well
   %h2= @github_project.full_name
   %p= @github_project.remote_repository_url
+  %p
+    - @github_project.glossaries.each do |glossary|
+      %i.icon-folder-close
+      - bilingual_pair = [glossary.source_language, glossary.target_language].join('-')
+      = link_to bilingual_pair, github_project_glossary_path(:id => bilingual_pair, :github_project_id => @github_project)
