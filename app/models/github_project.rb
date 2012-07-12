@@ -37,6 +37,10 @@ class GithubProject < ActiveRecord::Base
     registered_project.glossaries
   end
 
+  def glossary(source_language, target_language)
+    registered_project.glossary(source_language, target_language)
+  end
+
   private
   def registered_project
     LogalingServer.repository.find_project(logaling_name)

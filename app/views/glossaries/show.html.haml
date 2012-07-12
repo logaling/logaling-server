@@ -1,2 +1,11 @@
-%h1 Glossaries#show
-%p Find me in app/views/glossaries/show.html.haml
+%p#notice= notice
+
+.well
+  %h2= @github_project.full_name
+  %p= @github_project.remote_repository_url
+  %p
+    = "%s-%s" % [@glossary.source_language, @glossary.target_language]
+
+- @glossary.terms.each do |term|
+  = render :partial => 'shared/term', :locals => {:term => term}
+
