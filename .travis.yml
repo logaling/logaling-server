@@ -5,6 +5,8 @@ notifications:
 language: ruby
 rvm:
   - 1.9.3
+bundler_args: "--without development:production"
+before_script: "RAILS_ENV=test bundle exec rake db:create db:migrate --trace"
 install:
   - echo "deb http://packages.groonga.org/ubuntu/ $(lsb_release --short --codename) universe" | sudo tee /etc/apt/sources.list.d/groonga.list
   - sudo apt-get update
