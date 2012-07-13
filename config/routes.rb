@@ -4,12 +4,12 @@ LogalingServer::Application.routes.draw do
   get "top/index"
 
   resources :github_projects,
-    :path => 'github',
-    :constraints => {:id => %r{[^/]+/[^/]+}},
-    :only => [:show, :new, :create] do
+            :path => 'github',
+            :constraints => {:id => %r{[^/]+/[^/]+}},
+            :only => [:show, :new, :create] do
     resources :glossaries,
-      :constraints => {:id => %r{[^-]+-[^-]+}},
-      :only => :show
+              :constraints => {:id => %r{[^-]+-[^-]+}},
+              :only => :show
   end
 
   # The priority is based upon order of creation:
