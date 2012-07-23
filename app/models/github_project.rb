@@ -5,6 +5,8 @@ class GithubProject < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :owner
   validates_format_of :owner, :name, :with => /\A[0-9a-z\-_]+\z/
 
+  after_create :sync!
+
   class << self
     def of(id)
       owner, name = id.split('/', 2)

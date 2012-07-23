@@ -25,7 +25,6 @@ class GithubProjectsController < ApplicationController
   # POST /github_projects.json
   def create
     @github_project = GithubProject.new(params[:github_project])
-    @github_project.sync!
 
     respond_to do |format|
       if @github_project.save
