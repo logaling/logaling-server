@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: cd772a96d6faebc998fa38c5d4316fe9c965f950
+  revision: 20c30de9727794dcc76401b0a61dd5364d8ab8ea
   specs:
-    logaling-command (0.1.6)
+    logaling-command (0.1.7)
       activesupport
       bundler (>= 1.0)
       nokogiri
@@ -96,7 +96,7 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     nokogiri (1.5.5)
-    pkg-config (1.1.3)
+    pkg-config (1.1.4)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
