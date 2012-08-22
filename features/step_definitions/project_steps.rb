@@ -18,6 +18,11 @@ end
   click_on 'Save'
 end
 
+もし /^"([^"]*)"と検索する$/ do |query|
+  fill_in 'query', with: query
+  click_on 'Search'
+end
+
 ならば /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録済みであること$/ do |owner, project|
   visit "/github/#{owner}/#{project}"
   page.should have_content(project)

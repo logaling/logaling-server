@@ -26,6 +26,7 @@
           = link_to "logaling", root_path, :class => 'brand'
           = form_tag search_path, :method => :get, :class => 'navbar-search pull-left' do
             = text_field_tag :query, @query, :class => 'search-query', :placeholder => 'Search'
+            = submit_tag 'Search', style: 'display: none'
 
     .container
 
