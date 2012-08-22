@@ -8,6 +8,10 @@ end
   visit '/github/new'
 end
 
+前提 /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録済みである$/ do |owner, project|
+  GithubProject.create!(owner: owner, name: project)
+end
+
 もし /^"([^"]*)"ユーザの"([^"]*)"プロジェクトを登録する$/ do |owner, project|
   fill_in 'github_project_owner', with: owner
   fill_in 'github_project_name', with: project
@@ -17,4 +21,8 @@ end
 ならば /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録済みであること$/ do |owner, project|
   visit "/github/#{owner}/#{project}"
   page.should have_content(project)
+end
+
+ならば /^"([^"]*)"と表示されていること$/ do |text|
+  page.should have_content(text)
 end

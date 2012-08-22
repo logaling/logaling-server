@@ -1,9 +1,9 @@
 ja:
   activerecord:
     models:
-      github_project: github_project  #g
+      github_project: githubプロジェクト
 
     attributes:
       github_project:
-        owner: owner  #g
-        name: name  #g
+        owner: ユーザ
+        name: プロジェクト名

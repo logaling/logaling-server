@@ -9,3 +9,10 @@
     前提   プロジェクト登録画面を表示する
     もし   "logaling"ユーザの"logaling-server"プロジェクトを登録する
     ならば "logaling"ユーザの"logaling-server"プロジェクトが登録済みであること
+
+  シナリオ: 登録済みの github プロジェクトは重複して登録できない
+    前提   "logaling"ユーザの"logaling-server"プロジェクトが登録済みである
+    かつ   プロジェクト登録画面を表示する
+    もし   "logaling"ユーザの"logaling-server"プロジェクトを登録する
+    ならば "プロジェクト名はすでに存在します"と表示されていること
+
