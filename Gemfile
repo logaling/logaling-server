@@ -41,6 +41,10 @@ gem 'haml-rails'
 
 gem 'logaling-command', :git => 'git://github.com/logaling/logaling-command.git', :require => 'logaling'
 
+group :development do
+  gem 'i18n_generators'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
