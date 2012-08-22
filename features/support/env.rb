@@ -48,6 +48,9 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+Before do
+  LogalingServer.flush_data_directory!
+end
 
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
