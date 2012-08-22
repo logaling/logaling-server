@@ -11,17 +11,21 @@ module Project
     File.directory?(dot_logaling_path)
   end
 
-  def sync!
-    checkout!
-    unless with_logaling?
-      raise "Project does not have .logaling"
-    end
+  def register!
     begin
       LogalingServer.repository.register(dot_logaling_path, logaling_name)
     rescue Logaling::GlossaryAlreadyRegistered
       # do nothing
     end
     LogalingServer.repository.index
+  end
+
+  def sync!
+    checkout!
+    unless with_logaling?
+      raise "Project does not have .logaling"
+    end
+    register!
   end
 
   def remove_repository!

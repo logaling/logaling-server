@@ -1,11 +1,14 @@
+#coding: utf-8
 class GithubProject < ActiveRecord::Base
   include Project
   include GitBackended
 
   validates_uniqueness_of :name, :scope => :owner
   validates_format_of :owner, :name, :with => /\A[0-9a-z\-_]+\z/
+  validate :project_has_dot_logaling, on: :create
 
-  after_create :sync!
+  before_validation :checkout!, on: :create
+  after_create :register!
 
   class << self
     def of(id)
@@ -46,5 +49,12 @@ class GithubProject < ActiveRecord::Base
   private
   def registered_project
     LogalingServer.repository.find_project(logaling_name)
+  end
+
+  def project_has_dot_logaling
+    unless with_logaling?
+      errors.add :name, "には対訳用語集が存在しません"
+      FileUtils.rm_rf(repository_path)
+    end
   end
 end

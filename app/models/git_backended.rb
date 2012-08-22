@@ -4,8 +4,6 @@ module GitBackended
   end
 
   def checkout!
-    raise "not valid" unless valid?
-
     if File.directory?(repository_path)
       Dir.chdir(repository_path) do
         unless system "git", "reset", "--hard"
