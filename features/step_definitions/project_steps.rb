@@ -23,6 +23,11 @@ end
   click_on 'Search'
 end
 
+ならば /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録されていないこと$/ do |owner, project|
+  visit "/github/#{owner}/#{project}"
+  page.status_code.should eq 404
+end
+
 ならば /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録済みであること$/ do |owner, project|
   visit "/github/#{owner}/#{project}"
   page.should have_content(project)

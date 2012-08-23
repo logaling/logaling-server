@@ -4,9 +4,13 @@ class GithubProjectsController < ApplicationController
   def show
     @github_project = GithubProject.of(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @github_project }
+    if @github_project
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @github_project }
+      end
+    else
+      render :file => 'public/404.html', :status => 404, :layout => false
     end
   end
 
