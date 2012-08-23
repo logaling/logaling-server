@@ -4,7 +4,7 @@ module GitBackended
   end
 
   def checkout!
-    if File.directory?(repository_path)
+    if cloned?
       Dir.chdir(repository_path) do
         unless system "git", "reset", "--hard"
           raise "reset failed"
@@ -21,5 +21,9 @@ module GitBackended
         end
       end
     end
+  end
+
+  def cloned?
+    File.directory?(repository_path)
   end
 end
