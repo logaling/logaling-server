@@ -35,7 +35,8 @@
             - else
               - if Rails.env.development?
                 %li= link_to "Sign in (for dev)", "/auth/developer"
-                %li= link_to "Sign in with Github", "/auth/github"
+              - %w(github facebook).each do |provider|
+                %li= link_to "Sign in with #{provider.capitalize}", "/auth/#{provider}"
 
     .container
 
