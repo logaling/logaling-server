@@ -86,6 +86,7 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
     i18n_generators (1.1.0)
@@ -118,6 +119,9 @@ GEM
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)
     nokogiri (1.5.5)
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
     pkg-config (1.1.4)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -213,6 +217,7 @@ DEPENDENCIES
   i18n_generators
   jquery-rails
   logaling-command!
+  omniauth
   rails (= 3.2.8)
   rspec-rails
   sass-rails (~> 3.2.3)
