@@ -27,6 +27,14 @@
           = form_tag search_path, :method => :get, :class => 'navbar-search pull-left' do
             = text_field_tag :query, @query, :class => 'search-query', :placeholder => 'Search'
             = submit_tag 'Search', style: 'display: none'
+          %ul.nav.pull-right
+            - if signed_in?
+              %li= link_to current_user.name, "#"
+              %li.divider-vertical
+              %li= link_to "Sign out", signout_path
+            - else
+              - if Rails.env.development?
+                %li= link_to "Sign in", "/auth/developer"
 
     .container
 

@@ -12,6 +12,10 @@ LogalingServer::Application.routes.draw do
               :only => :show
   end
 
+  match '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/failure', to: 'sessions#failure'
+  match "/signout" => "sessions#destroy", :as => :signout
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
