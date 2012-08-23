@@ -34,7 +34,8 @@
               %li= link_to "Sign out", signout_path
             - else
               - if Rails.env.development?
-                %li= link_to "Sign in", "/auth/developer"
+                %li= link_to "Sign in (for dev)", "/auth/developer"
+                %li= link_to "Sign in with Github", "/auth/github"
 
     .container
 
