@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/logaling/logaling-server.png)](http://travis-ci.org/logaling/logaling-server)
 
-[logaling-server](http://logaling.github.com/related-projects.html) logaling-server is a Web application that allows you to easily search on the Web glossaries that are created using the logaling-command.
+logaling-server is a Web application that allows you to easily search on the Web glossaries that are created using [the logaling-command](http://logaling.github.com/).
 
 ### To install:
 
