@@ -6,4 +6,7 @@ Gem::Specification.new do |s|
   s.authors     = ["SHIMADA Koji", "SHIDARA Yoji", "Kouhei Sutou", "Daijiro MORI", "SUZUKI Miho"]
   s.email       = ["koji.shimada@enishi-tech.com", "dara@shidara.net", "kou@clear-code.com", "daijiro.mori@gmail.com", "adzuki34@gmail.com"]
   s.homepage    = "http://logaling.github.com/"
+  s.summary     = %q{A logaling-server.}
+  s.description = %q{A logaling-server.}
+
 end
