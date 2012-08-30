@@ -8,5 +8,4 @@ Gem::Specification.new do |s|
   s.homepage    = "http://logaling.github.com/"
   s.summary     = %q{A logaling-server.}
   s.description = %q{A logaling-server.}
-
 end
