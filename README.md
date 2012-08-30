@@ -4,24 +4,21 @@
 
 logaling-server is a Web application that allows you to easily search on the Web glossaries that are created using [the logaling-command](http://logaling.github.com/).
 
-### To install:
-
-    % gem install logaling-server
-
 ### To setup:
 
-    % rake db:migrate
-    % rake loga:index
+    % bundle install
+    % bundle exec rake db:migrate
+    % bundle exec rake loga:index
 
 ### To start web application
 
-    % rails server
+    % bundle exec rails server
 
 You can see your logaling-server site at http://localhost:3000/.
 
 ### To import external-glossaries
 
-    % rake loga:import
+    % bundle exec rake loga:import
 
 ### License
 
