@@ -16,3 +16,6 @@
 
 # Ignore project specific directories.
 /data.*
+
+# Ignore .gem file.
+*.gem
