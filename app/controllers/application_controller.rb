@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
   def signed_in?
     !!current_user
   end
+
+  def authenticate!
+    unless signed_in?
+      redirect_to root_path
+    else
+      true
+    end
+  end
 end
