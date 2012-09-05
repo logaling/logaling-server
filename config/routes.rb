@@ -15,6 +15,7 @@ LogalingServer::Application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
+  match "/dashboard" => "dashboard#show", :as => :dashboard
 
   root :to => 'top#index'
 end
