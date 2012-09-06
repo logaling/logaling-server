@@ -1,4 +1,6 @@
 LogalingServer::Application.routes.draw do
+  get "user_glossary/new"
+
   get "search", :as => :search, :controller => 'search', :action => :index
 
   get "top/index"
@@ -16,6 +18,7 @@ LogalingServer::Application.routes.draw do
   match '/auth/failure', to: 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/dashboard" => "dashboard#show", :as => :dashboard
+  match "/users/:id/glossaries/new" => "user_glossary#new", :as => :new_user_glossary
 
   root :to => 'top#index'
 end

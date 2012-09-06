@@ -1,0 +1,2 @@
+module UserGlossaryHelper
+end
