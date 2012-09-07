@@ -1,0 +1,18 @@
+= form_for @user_glossary, :url => create_user_glossary_path do |f|
+  -if @user_glossary.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user_glossary.errors.count, "error")} prohibited this user_glossary from being saved:"
+      %ul
+        - @user_glossary.errors.full_messages.each do |msg|
+          %li= msg
+
+  .well
+    %p Glossary name:
+    = f.text_field :name
+    %p Source language:
+    = f.text_field :source_language
+    %p Target language:
+    = f.text_field :target_language
+
+  .actions
+    = f.submit 'Save', :class => 'btn btn-primary'

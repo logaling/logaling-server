@@ -1,6 +1,4 @@
 LogalingServer::Application.routes.draw do
-  get "user_glossary/new"
-
   get "search", :as => :search, :controller => 'search', :action => :index
 
   get "top/index"
@@ -14,11 +12,15 @@ LogalingServer::Application.routes.draw do
               :only => :show
   end
 
+  resources :user_glossaries,
+    :path => 'users/:user_id/glossaries',
+    :constraints => {:id => %r{[^-]+-[^-]+}},
+    :only => [:new, :create, :show]
+
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/dashboard" => "dashboard#show", :as => :dashboard
-  match "/users/:id/glossaries/new" => "user_glossaries#new", :as => :new_user_glossary
 
   root :to => 'top#index'
 end
