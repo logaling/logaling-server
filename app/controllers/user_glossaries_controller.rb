@@ -22,14 +22,15 @@ class UserGlossariesController < ApplicationController
   # POST /user_glossaries.json
   def create
     #TODO: check user_id
-    #TODO: do loga new --personal
-    respond_to do |format|
-      if @user_glossary.save
-        format.html { render action: "show", notice: 'User glossary was successfully created.' }
-        format.json { render json: @user_glossary, status: :created, location: @user_glossary }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
+    if @user_glossary.create
+      respond_to do |format|
+        if @user_glossary.save
+          format.html { render action: "show", notice: 'User glossary was successfully created.' }
+          format.json { render json: @user_glossary, status: :created, location: @user_glossary }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
