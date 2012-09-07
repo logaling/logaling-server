@@ -1,4 +1,4 @@
-= form_for @user_glossary, :url => create_user_glossary_path do |f|
+= form_for @user_glossary do |f|
   -if @user_glossary.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user_glossary.errors.count, "error")} prohibited this user_glossary from being saved:"
