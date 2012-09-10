@@ -1,7 +1,6 @@
 #coding: utf-8
 class UserGlossariesController < ApplicationController
   before_filter :authenticate!, :except => :show
-  before_filter :set_user
   before_filter :valid_user?, :only => [:new, :create]
   before_filter :set_user_glossary, :only => :create
 
@@ -38,16 +37,12 @@ class UserGlossariesController < ApplicationController
   end
 
   private
-  def set_user
-    @user = current_user
-  end
-
   def set_user_glossary
-    @user_glossary = @user.user_glossaries.build(params[:user_glossary])
+    @user_glossary = current_user.user_glossaries.build(params[:user_glossary])
   end
 
   def valid_user?
-    if @user.id != params[:user_id].to_i
+    if current_user.id != params[:user_id].to_i
       flash[:notice] = "不正なアクセスです"
       redirect_to dashboard_path
     end
