@@ -1,5 +1,7 @@
+#coding: utf-8
 class UserGlossariesController < ApplicationController
   before_filter :set_user
+  before_filter :valid_user?, :only => [:new, :create]
   before_filter :set_user_glossary, :only => :create
 
   # GET /user_glossaries/1
@@ -21,7 +23,6 @@ class UserGlossariesController < ApplicationController
   # POST /user_glossaries
   # POST /user_glossaries.json
   def create
-    #TODO: check user_id
     if @user_glossary.create
       respond_to do |format|
         if @user_glossary.save
@@ -42,5 +43,12 @@ class UserGlossariesController < ApplicationController
 
   def set_user_glossary
     @user_glossary = @user.user_glossaries.build(params[:user_glossary])
+  end
+
+  def valid_user?
+    if @user.id != params[:user_id]
+      flash[:notice] = "不正なアクセスです"
+      redirect_to :controller => :dashboard, :action => :show
+    end
   end
 end
