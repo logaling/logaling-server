@@ -39,8 +39,7 @@ class UserGlossariesController < ApplicationController
   private
   def valid_user?
     if current_user.id != params[:user_id].to_i
-      flash[:notice] = "不正なアクセスです"
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "不正なアクセスです"
     end
   end
 end
