@@ -2,7 +2,6 @@
 class UserGlossariesController < ApplicationController
   before_filter :authenticate!, :except => :show
   before_filter :valid_user?, :only => [:new, :create]
-  before_filter :set_user_glossary, :only => :create
 
   # GET /user_glossaries/1
   # GET /user_glossaries/1.json
@@ -23,6 +22,7 @@ class UserGlossariesController < ApplicationController
   # POST /user_glossaries
   # POST /user_glossaries.json
   def create
+    @user_glossary = current_user.user_glossaries.build(params[:user_glossary])
     if @user_glossary.create
       respond_to do |format|
         if @user_glossary.save
@@ -37,10 +37,6 @@ class UserGlossariesController < ApplicationController
   end
 
   private
-  def set_user_glossary
-    @user_glossary = current_user.user_glossaries.build(params[:user_glossary])
-  end
-
   def valid_user?
     if current_user.id != params[:user_id].to_i
       flash[:notice] = "不正なアクセスです"
