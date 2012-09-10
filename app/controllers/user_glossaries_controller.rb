@@ -11,7 +11,7 @@ class UserGlossariesController < ApplicationController
   # GET /user_glossaries/new
   # GET /user_glossaries/new.json
   def new
-    @user_glossary = UserGlossary.new()
+    @user_glossary = UserGlossary.new
 
     respond_to do |format|
       format.html
