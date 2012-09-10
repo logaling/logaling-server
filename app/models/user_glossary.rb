@@ -3,7 +3,9 @@ class UserGlossary < ActiveRecord::Base
 
   belongs_to :user
 
+  validates_presence_of :name, :source_language, :target_language
   #TODO: validation
+
   after_create :create_personal_project!
 
   private
