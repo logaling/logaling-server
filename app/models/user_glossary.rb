@@ -4,18 +4,13 @@ class UserGlossary < ActiveRecord::Base
   belongs_to :user
 
   #TODO: validation
-
-  def create
-    #TODO: check dupplication
-    begin
-      personal_project = LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
-    rescue Logaling::GlossaryAlreadyRegistered
-      false
-    end
-    true
-  end
+  after_create :create_personal_project!
 
   private
+  def create_personal_project!
+    LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
+  end
+
   def glossary_name
     "%05d-%s"%[self.user_id, name]
   end

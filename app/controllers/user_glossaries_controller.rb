@@ -23,16 +23,16 @@ class UserGlossariesController < ApplicationController
   # POST /user_glossaries.json
   def create
     @user_glossary = current_user.user_glossaries.build(params[:user_glossary])
-    if @user_glossary.create
-      respond_to do |format|
-        if @user_glossary.save
-          format.html { render action: "show", notice: 'User glossary was successfully created.' }
-          format.json { render json: @user_glossary, status: :created, location: @user_glossary }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
-        end
-      end
+    @user_glossary.save!
+
+    respond_to do |format|
+      format.html { render action: "show", notice: 'User glossary was successfully created.' }
+      format.json { render json: @user_glossary, status: :created, location: @user_glossary }
+    end
+  rescue => e
+    respond_to do |format|
+      format.html { render action: "new" }
+      format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
     end
   end
 
