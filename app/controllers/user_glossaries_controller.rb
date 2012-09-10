@@ -1,5 +1,6 @@
 #coding: utf-8
 class UserGlossariesController < ApplicationController
+  before_filter :authenticate!, :except => :show
   before_filter :set_user
   before_filter :valid_user?, :only => [:new, :create]
   before_filter :set_user_glossary, :only => :create
