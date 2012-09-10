@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 20c30de9727794dcc76401b0a61dd5364d8ab8ea
+  revision: 1395d9dd2658d1f0f8f026731bcb8f4a4e6fbecc
   specs:
-    logaling-command (0.1.7)
+    logaling-command (0.1.8)
       activesupport
       bundler (>= 1.0)
       nokogiri
@@ -93,7 +93,7 @@ GEM
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.1)
-    i18n (0.6.0)
+    i18n (0.6.1)
     i18n_generators (1.1.0)
       mechanize
     io-like (0.3.0)
