@@ -8,11 +8,15 @@ class UserGlossary < ActiveRecord::Base
   def create
     #TODO: check dupplication
     begin
-      glossary_name = "%05d-%s"%[self.user_id, name]
       personal_project = LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
     rescue Logaling::GlossaryAlreadyRegistered
       false
     end
     true
+  end
+
+  private
+  def glossary_name
+    "%05d-%s"%[self.user_id, name]
   end
 end
