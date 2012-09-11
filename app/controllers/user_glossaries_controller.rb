@@ -26,7 +26,7 @@ class UserGlossariesController < ApplicationController
     @user_glossary.save!
 
     respond_to do |format|
-      format.html { render action: "show", notice: 'User glossary was successfully created.' }
+      format.html { redirect_to user_glossary_path(current_user, @user_glossary), notice: 'User glossary was successfully created.' }
       format.json { render json: @user_glossary, status: :created, location: @user_glossary }
     end
   rescue => e

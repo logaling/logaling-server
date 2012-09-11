@@ -35,7 +35,8 @@
                 %li= link_to "Sign in with #{provider.capitalize}", "/auth/#{provider}"
 
     .container
-
+      - [:notice, :alert, :error].map {|k| flash[k] }.reject {|msg| msg.blank? }.each do |msg|
+        %p= msg
       .content
         .row
           .span12

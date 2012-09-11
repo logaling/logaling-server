@@ -12,10 +12,12 @@ LogalingServer::Application.routes.draw do
               :only => :show
   end
 
-  resources :user_glossaries,
-    :path => 'users/:user_id/glossaries',
-    :constraints => {:id => %r{[^-]+-[^-]+}},
-    :only => [:new, :create, :show]
+  resources :users, :only => [] do
+    resources :user_glossaries,
+      :path => 'glossaries',
+      :only => [:new, :create, :show],
+      :as => :glossaries
+  end
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'

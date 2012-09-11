@@ -7,11 +7,11 @@
           %li= msg
 
   .well
-    %p Glossary name:
+    = f.label :name, "Glossary name:"
     = f.text_field :name
-    %p Source language:
+    = f.label :source_language, "Source language:"
     = f.text_field :source_language
-    %p Target language:
+    = f.label :target_language, "Target language:"
     = f.text_field :target_language
 
   .actions
