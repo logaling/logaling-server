@@ -14,6 +14,6 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def glossary_name
-    "%05d-%s"%[self.user_id, name]
+    "%05d-%s"%[user_id, name]
   end
 end
