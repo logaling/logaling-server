@@ -31,6 +31,7 @@ class UserGlossariesController < ApplicationController
     end
   rescue => e
     respond_to do |format|
+      @user_glossary.errors.add(:name, e) if @user_glossary.errors.empty?
       format.html { render action: "new" }
       format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
     end
