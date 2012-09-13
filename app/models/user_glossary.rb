@@ -4,7 +4,7 @@ class UserGlossary < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :name, :source_language, :target_language
-  #TODO: validation
+  validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
 
   after_create :create_personal_project!
 
