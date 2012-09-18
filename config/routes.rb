@@ -16,7 +16,11 @@ LogalingServer::Application.routes.draw do
     resources :user_glossaries,
       :path => 'glossaries',
       :only => [:new, :create, :show],
-      :as => :glossaries
+      :as => :glossaries do
+      resources :terms,
+        :path => 'terms',
+        :as => :terms
+    end
   end
 
   match '/auth/:provider/callback', to: 'sessions#create'
