@@ -19,7 +19,14 @@ LogalingServer::Application.routes.draw do
       :as => :glossaries do
       resources :terms,
         :path => 'terms',
-        :as => :terms
+        :as => :terms,
+        :only => [:new, :create] do
+        collection do
+          delete "destroy"
+          post "edit"
+          put "update"
+        end
+      end
     end
   end
 
