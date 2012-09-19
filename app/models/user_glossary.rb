@@ -28,6 +28,21 @@ class UserGlossary < ActiveRecord::Base
     LogalingServer.repository.index
   end
 
+  def update(term, new_term)
+    project = LogalingServer.repository.find_project(glossary_name)
+    raise Logaling::ProjectNotFound unless project
+    raise Logaling::ProjectNotFound if project.class.name == 'Logaling::ImportedProject'
+
+    raise Logaling::TermError unless term.valid?
+    glossary = project.glossary(source_language, target_language)
+    unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
+      raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' doesn't exist in '#{name}'"
+    end
+
+    glossary.update(term.source_term, term.target_term, new_term.target_term, new_term.note)
+    LogalingServer.repository.index
+  end
+
   def delete(term)
     project = LogalingServer.repository.find_project(glossary_name)
     raise Logaling::ProjectNotFound unless project

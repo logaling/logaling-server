@@ -17,9 +17,14 @@ class TermsController < ApplicationController
   end
 
   def edit
+    @term = Term.find(params[:id])
   end
 
   def update
+    @term = Term.find(params[:id])
+    new_term = Term.new(params[:term])
+    @user_glossary.update(@term, new_term)
+    redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully updated.'
   end
 
   def destroy
