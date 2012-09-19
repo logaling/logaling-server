@@ -1,20 +1,10 @@
 #coding: utf-8
 class Term
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
+  include ActiveAttr::Model
 
-  attr_accessor :source_term, :target_term, :note
+  attribute :source_term, type: String, default: ''
+  attribute :target_term, type: String, default: ''
+  attribute :note, type: String, default: ''
 
   validates_presence_of :source_term, :target_term
-
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
-  end
-
-  def persisted?
-    false
-  end
 end
