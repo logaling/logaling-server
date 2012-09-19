@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 1395d9dd2658d1f0f8f026731bcb8f4a4e6fbecc
+  revision: e7c6e3ba16a352771f32096a5f5908bdf50952c1
   specs:
     logaling-command (0.1.8)
       activesupport
@@ -105,7 +105,7 @@ GEM
     io-like (0.3.0)
     journey (1.0.4)
     jquery-rails (2.0.2)
-      railties (< 5.0, >= 3.2.0)
+      railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.7.5)
     jwt (0.1.5)
