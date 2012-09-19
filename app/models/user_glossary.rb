@@ -1,3 +1,4 @@
+#coding: utf-8
 class UserGlossary < ActiveRecord::Base
   attr_accessible :name, :source_language, :target_language
 
@@ -8,12 +9,32 @@ class UserGlossary < ActiveRecord::Base
 
   after_create :create_personal_project!
 
+  def glossary_name
+    "%05d-%s" % [user_id, name]
+  end
+
+  def add!(term)
+    project = LogalingServer.repository.find_project(glossary_name)
+    raise Logaling::ProjectNotFound unless project
+    raise Logaling::ProjectNotFound if project.class.name == 'Logaling::ImportedProject'
+
+    raise Logaling::TermError unless term.valid?
+    glossary = project.glossary(source_language, target_language)
+    if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
+      raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'"
+    end
+
+    #FIXME: tentative treatment :-<
+    _default_internal = Encoding.default_internal
+    Encoding.default_internal = nil
+    glossary.add(term.source_term, term.target_term, term.note)
+    LogalingServer.repository.index
+  ensure
+    Encoding.default_internal = _default_internal if _default_internal
+  end
+
   private
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
-  end
-
-  def glossary_name
-    "%05d-%s" % [user_id, name]
   end
 end
