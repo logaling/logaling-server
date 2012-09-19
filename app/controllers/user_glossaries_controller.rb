@@ -4,7 +4,6 @@ class UserGlossariesController < ApplicationController
   before_filter :valid_user?, :only => [:new, :create]
 
   # GET /user_glossaries/1
-  # GET /user_glossaries/1.json
   def show
     @user_glossary = UserGlossary.find(params[:id])
   rescue ActiveRecord::RecordNotFound
