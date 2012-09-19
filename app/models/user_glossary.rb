@@ -28,6 +28,12 @@ class UserGlossary < ActiveRecord::Base
     LogalingServer.repository.index
   end
 
+  def terms(annotation=nil)
+    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    raise Logaling::GlossaryNotFound unless glossary
+    terms = glossary.terms(annotation).map { |term_hash| Term.set_value(term_hash) }
+  end
+
   private
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)

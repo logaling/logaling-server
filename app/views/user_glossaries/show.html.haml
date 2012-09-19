@@ -1,1 +1,13 @@
-UserGlossary#show
+.well
+  %h2
+    = @user_glossary.glossary_name
+    = @user_glossary.source_language
+    = @user_glossary.target_language
+  %p
+    = link_to 'Add new term', new_user_glossary_term_path(user_id: current_user.id, glossary_id: @user_glossary.id), :class => 'btn btn-large btn-primary'
+  %p
+    - @user_glossary.terms.each do |term|
+      %li
+        = term.source_term
+        = term.target_term
+        = term.note
