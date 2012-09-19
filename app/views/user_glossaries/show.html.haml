@@ -11,3 +11,4 @@
         = term.source_term
         = term.target_term
         = term.note
+        = link_to "Delete", user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete

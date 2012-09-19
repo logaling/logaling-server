@@ -23,6 +23,9 @@ class TermsController < ApplicationController
   end
 
   def destroy
+    @term = Term.find(params[:id])
+    @user_glossary.delete(@term)
+    redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully destroyed.'
   end
 
   private
