@@ -24,13 +24,8 @@ class UserGlossary < ActiveRecord::Base
       raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'"
     end
 
-    #FIXME: tentative treatment :-<
-    _default_internal = Encoding.default_internal
-    Encoding.default_internal = nil
     glossary.add(term.source_term, term.target_term, term.note)
     LogalingServer.repository.index
-  ensure
-    Encoding.default_internal = _default_internal if _default_internal
   end
 
   private
