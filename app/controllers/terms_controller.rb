@@ -25,12 +25,17 @@ class TermsController < ApplicationController
     new_term = Term.new(params[:term])
     @user_glossary.update(@term, new_term)
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully updated.'
+  rescue => e
+    @term.errors.add(:target_term, e) if @term.errors.empty?
+    render action: "edit"
   end
 
   def destroy
     @term = Term.find(params[:id])
     @user_glossary.delete(@term)
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully destroyed.'
+  rescue => e
+    redirect_to user_glossary_path(current_user, @user_glossary), notice: e.to_s
   end
 
   private
