@@ -58,7 +58,7 @@ class UserGlossary < ActiveRecord::Base
   def terms(annotation=nil)
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
-    terms = glossary.terms(annotation).map { |term_hash| Term.set_value(term_hash) }
+    terms = glossary.terms(annotation).map { |term_attrs| Term.new(term_attrs) }
   end
 
   private
