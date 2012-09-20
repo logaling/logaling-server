@@ -28,7 +28,7 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def update(term, new_term)
-    raise Logaling::TermError unless term.valid?
+    raise Logaling::TermError unless new_term.valid?
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
