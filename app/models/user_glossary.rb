@@ -14,12 +14,11 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def add!(term)
-    project = LogalingServer.repository.find_project(glossary_name)
-    raise Logaling::ProjectNotFound unless project
-    raise Logaling::ProjectNotFound if project.class.name == 'Logaling::ImportedProject'
-
     raise Logaling::TermError unless term.valid?
-    glossary = project.glossary(source_language, target_language)
+
+    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    raise Logaling::GlossaryNotFound unless glossary
+
     if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
       raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'"
     end
@@ -29,12 +28,11 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def update(term, new_term)
-    project = LogalingServer.repository.find_project(glossary_name)
-    raise Logaling::ProjectNotFound unless project
-    raise Logaling::ProjectNotFound if project.class.name == 'Logaling::ImportedProject'
-
     raise Logaling::TermError unless term.valid?
-    glossary = project.glossary(source_language, target_language)
+
+    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    raise Logaling::GlossaryNotFound unless glossary
+
     unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
       raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' doesn't exist in '#{name}'"
     end
@@ -44,12 +42,11 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def delete(term)
-    project = LogalingServer.repository.find_project(glossary_name)
-    raise Logaling::ProjectNotFound unless project
-    raise Logaling::ProjectNotFound if project.class.name == 'Logaling::ImportedProject'
-
     raise Logaling::TermError unless term.valid?
-    glossary = project.glossary(source_language, target_language)
+
+    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    raise Logaling::GlossaryNotFound unless glossary
+
     unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
       raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' doesn't exist in '#{name}'"
     end
