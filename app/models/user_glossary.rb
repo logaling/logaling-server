@@ -16,7 +16,7 @@ class UserGlossary < ActiveRecord::Base
   def add!(term)
     raise Logaling::TermError unless term.valid?
 
-    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
     if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
@@ -30,7 +30,7 @@ class UserGlossary < ActiveRecord::Base
   def update(term, new_term)
     raise Logaling::TermError unless term.valid?
 
-    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
     unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
@@ -44,7 +44,7 @@ class UserGlossary < ActiveRecord::Base
   def delete(term)
     raise Logaling::TermError unless term.valid?
 
-    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
     unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
@@ -56,12 +56,16 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def terms(annotation=nil)
-    glossary = LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+    glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
     terms = glossary.terms(annotation).map { |term_hash| Term.set_value(term_hash) }
   end
 
   private
+  def find_glossary
+    LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
+  end
+  
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
   end
