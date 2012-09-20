@@ -33,8 +33,8 @@ class UserGlossary < ActiveRecord::Base
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
-    unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
-      raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' doesn't exist in '#{name}'"
+    if glossary.bilingual_pair_exists?(term.source_term, new_term.target_term, new_term.note)
+      raise Logaling::TermError, "term '#{term.source_term}: #{new_term.target_term}' already exists in '#{name}'"
     end
 
     glossary.update(term.source_term, term.target_term, new_term.target_term, new_term.note)
