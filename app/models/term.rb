@@ -9,6 +9,10 @@ class Term
       end
     end
 
+    def load(id, user_glossary)
+      self.find(id).load(user_glossary)
+    end
+
     def id_to_source_term_and_target_term(id)
       id.split("source:")[1].split(" target:", 2)
     end
@@ -23,5 +27,11 @@ class Term
 
   def id
     "source:#{source_term} target:#{target_term}"
+  end
+
+  def load(user_glossary)
+    term_data = user_glossary.find_bilingual_pair(source_term, target_term)
+    self.note = term_data[:note]
+    self
   end
 end

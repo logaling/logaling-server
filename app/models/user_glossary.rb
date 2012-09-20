@@ -55,6 +55,13 @@ class UserGlossary < ActiveRecord::Base
     LogalingServer.repository.index
   end
 
+  def find_bilingual_pair(soruce_term, target_term)
+    glossary = find_glossary
+    raise Logaling::GlossaryNotFound unless glossary
+
+    glossary.find_bilingual_pairs(soruce_term, target_term).first
+  end
+
   def terms(annotation=nil)
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary

@@ -17,7 +17,7 @@ class TermsController < ApplicationController
   end
 
   def edit
-    @term = Term.find(params[:id])
+    @term = Term.load(params[:id], @user_glossary)
   end
 
   def update
