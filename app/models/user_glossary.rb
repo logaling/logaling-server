@@ -65,7 +65,7 @@ class UserGlossary < ActiveRecord::Base
   def find_glossary
     LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
   end
-  
+
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
   end
