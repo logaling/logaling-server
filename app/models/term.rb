@@ -10,7 +10,7 @@ class Term
     end
 
     def load(id, user_glossary)
-      self.find(id).load(user_glossary)
+      find(id).load(user_glossary)
     end
 
     def id_to_source_term_and_target_term(id)
