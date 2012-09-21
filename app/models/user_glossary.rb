@@ -13,6 +13,10 @@ class UserGlossary < ActiveRecord::Base
     "%05d-%s" % [user_id, name]
   end
 
+  def to_param
+    "%s.%s.%s" % [name, source_language, target_language]
+  end
+
   def add!(term)
     raise ArgumentError unless term.valid?
 
