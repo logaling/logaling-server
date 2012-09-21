@@ -5,8 +5,9 @@
     %ul
       - @user_glossaries.each do |user_glossary|
         %li
+          - mark = @user_config.same?(user_glossary) ? "★": "☆"
           = user_glossary.glossary_name
           = user_glossary.source_language
           = user_glossary.target_language
           = link_to "Show", user_glossary_path(current_user, user_glossary)
-          = link_to "☆", user_config_path(current_user, user_glossary.config_key), method: :put
+          = link_to mark, user_config_path(current_user, user_glossary.config_key), method: :put

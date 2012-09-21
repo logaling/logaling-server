@@ -10,6 +10,12 @@ class UserConfig < ActiveRecord::Base
     self.glossary, self.source_language, self.target_language = id_to_config(params[:id])
   end
 
+  def same?(user_glossary)
+    glossary == user_glossary.glossary_name &&
+    source_language == user_glossary.source_language &&
+    target_language == user_glossary.target_language
+  end
+
   private
   def id_to_config(id)
     id.split(".", 3)
