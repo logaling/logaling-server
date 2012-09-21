@@ -8,5 +8,5 @@
           = user_glossary.glossary_name
           = user_glossary.source_language
           = user_glossary.target_language
-          = link_to "Show", user_glossary_path(current_user, user_glossary)
+          = link_to "Show", user_glossary_path(current_user, user_glossary.id)
           = link_to "☆", user_config_path(current_user, user_glossary.to_param), method: :put
