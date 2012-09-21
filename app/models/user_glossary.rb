@@ -14,7 +14,7 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def config_key
-    "%s.%s.%s" % [name, source_language, target_language]
+    "%s.%s.%s" % [glossary_name, source_language, target_language]
   end
 
   def add!(term)
