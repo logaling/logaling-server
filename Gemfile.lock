@@ -133,6 +133,7 @@ GEM
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)
     nokogiri (1.5.5)
+    oauth (0.4.6)
     oauth2 (0.8.0)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -147,9 +148,15 @@ GEM
     omniauth-github (1.0.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     omniauth-oauth2 (1.1.0)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    omniauth-twitter (0.0.11)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
     pkg-config (1.1.4)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -252,6 +259,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-github
+  omniauth-twitter
   rails (= 3.2.8)
   rspec-rails
   sass-rails (~> 3.2.3)
