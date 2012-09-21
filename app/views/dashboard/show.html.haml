@@ -2,3 +2,11 @@
 
 .well
   %p= link_to "Create user glossary", new_user_glossary_path(:user_id => current_user)
+  %p
+    %ul
+      - @user_glossaries.each do |user_glossary|
+        %li
+          = user_glossary.glossary_name
+          = user_glossary.source_language
+          = user_glossary.target_language
+          = link_to "Show", user_glossary_path(current_user, user_glossary)
