@@ -13,7 +13,7 @@ class UserGlossary < ActiveRecord::Base
     "%05d-%s" % [user_id, name]
   end
 
-  def to_param
+  def config_key
     "%s.%s.%s" % [name, source_language, target_language]
   end
 
