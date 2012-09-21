@@ -25,7 +25,7 @@
             = submit_tag 'Search', style: 'display: none'
           %ul.nav.pull-right
             - if signed_in?
-              %li= link_to current_user.name, "#"
+              %li= link_to current_user.name, dashboard_path
               %li.divider-vertical
               %li= link_to "Sign out", signout_path
             - else
@@ -35,7 +35,8 @@
                 %li= link_to "Sign in with #{provider.capitalize}", "/auth/#{provider}"
 
     .container
-
+      - [:notice, :alert, :error].map {|k| flash[k] }.reject {|msg| msg.blank? }.each do |msg|
+        %p= msg
       .content
         .row
           .span12

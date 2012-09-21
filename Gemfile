@@ -27,6 +27,7 @@ gem 'haml-rails'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
+gem 'active_attr'
 gem 'omniauth-twitter'
 
 # To use ActiveModel has_secure_password
@@ -59,4 +60,6 @@ end
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'fabrication'
+  gem 'faker'
 end

@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   end
 
   attr_accessible :name, :provider, :uid
+
+  has_many :user_glossaries
 end

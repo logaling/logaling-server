@@ -12,6 +12,15 @@ LogalingServer::Application.routes.draw do
               :only => :show
   end
 
+  resources :users, :only => [] do
+    resources :user_glossaries,
+      :path => 'glossaries',
+      :only => [:new, :create, :show],
+      :as => :glossaries do
+        resources :terms
+    end
+  end
+
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
