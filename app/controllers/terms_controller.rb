@@ -11,8 +11,7 @@ class TermsController < ApplicationController
     @user_glossary.add!(@term)
 
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully added.'
-  rescue => e
-    @term.errors.add(:source_term, e) if @term.errors.empty?
+  rescue ArgumentError, Logaling::GlossaryNotFound
     render action: "new"
   end
 
@@ -21,20 +20,21 @@ class TermsController < ApplicationController
   end
 
   def update
-    @term = Term.find(params[:id])
+    @term = Term.load(params[:id], @user_glossary)
     new_term = Term.new(params[:term])
     @user_glossary.update(@term, new_term)
+
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully updated.'
-  rescue => e
-    @term.errors.add(:target_term, e) if @term.errors.empty?
+  rescue ArgumentError, Logaling::GlossaryNotFound
     render action: "edit"
   end
 
   def destroy
-    @term = Term.find(params[:id])
+    @term = Term.load(params[:id], @user_glossary)
     @user_glossary.delete(@term)
+
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully destroyed.'
-  rescue => e
+  rescue ArgumentError, Logaling::GlossaryNotFound
     redirect_to user_glossary_path(current_user, @user_glossary), notice: e.to_s
   end
 

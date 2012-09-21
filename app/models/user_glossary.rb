@@ -14,45 +14,46 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def add!(term)
-    raise Logaling::TermError unless term.valid?
+    raise ArgumentError unless term.valid?
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
-
-    if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
-      raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'"
-    end
 
     glossary.add(term.source_term, term.target_term, term.note)
     LogalingServer.repository.index
+
+  rescue Logaling::TermError
+    term.errors.add(:source_term, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'")
+    raise ArgumentError
   end
 
   def update(term, new_term)
-    raise Logaling::TermError unless new_term.valid?
+    return if term == new_term
+    raise ArgumentError unless new_term.valid?
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
-
-    if glossary.bilingual_pair_exists?(term.source_term, new_term.target_term, new_term.note)
-      raise Logaling::TermError, "term '#{term.source_term}: #{new_term.target_term}' already exists in '#{name}'"
-    end
 
     glossary.update(term.source_term, term.target_term, new_term.target_term, new_term.note)
     LogalingServer.repository.index
+
+  rescue Logaling::TermError
+    term.errors.add(:target_term, "term '#{term.source_term}: #{new_term.target_term}' already exists in '#{name}'")
+    raise ArgumentError
   end
 
   def delete(term)
-    raise Logaling::TermError unless term.valid?
+    raise ArgumentError unless term.valid?
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
-    unless glossary.bilingual_pair_exists?(term.source_term, term.target_term)
-      raise Logaling::TermError, "term '#{term.source_term}: #{term.target_term}' doesn't exist in '#{name}'"
-    end
-
     glossary.delete(term.source_term, term.target_term)
     LogalingServer.repository.index
+
+  rescue Logaling::TermError
+    term.errors.add(:target_term, "term '#{term.source_term}: #{term.target_term}' doesn't exists in '#{name}'")
+    raise ArgumentError
   end
 
   def find_bilingual_pair(soruce_term, target_term)
