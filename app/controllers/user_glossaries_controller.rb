@@ -11,32 +11,19 @@ class UserGlossariesController < ApplicationController
   end
 
   # GET /user_glossaries/new
-  # GET /user_glossaries/new.json
   def new
     @user_glossary = UserGlossary.new
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @user_glossary }
-    end
   end
 
   # POST /user_glossaries
-  # POST /user_glossaries.json
   def create
     @user_glossary = current_user.user_glossaries.build(params[:user_glossary])
     @user_glossary.save!
 
-    respond_to do |format|
-      format.html { redirect_to user_glossary_path(current_user, @user_glossary), notice: 'User glossary was successfully created.' }
-      format.json { render json: @user_glossary, status: :created, location: @user_glossary }
-    end
+    redirect_to user_glossary_path(current_user, @user_glossary), notice: 'User glossary was successfully created.'
   rescue => e
-    respond_to do |format|
-      @user_glossary.errors.add(:name, e) if @user_glossary.errors.empty?
-      format.html { render action: "new" }
-      format.json { render json: @user_glossary.errors, status: :unprocessable_entity }
-    end
+    @user_glossary.errors.add(:name, e) if @user_glossary.errors.empty?
+    format.html { render action: "new" }
   end
 
   private
