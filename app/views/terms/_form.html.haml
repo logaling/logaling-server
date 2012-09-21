@@ -1,0 +1,19 @@
+= form_for @term, url: {action: 'create'} do |f|
+  -if @term.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
+      %ul
+        - @term.errors.full_messages.each do |msg|
+          %li= msg
+
+  .well
+    = f.label :source_term, "Source term:"
+    = f.text_field :source_term
+    = f.label :target_term, "Target term:"
+    = f.text_field :target_term
+    = f.label :note, "Note:"
+    = f.text_field :note
+
+  .actions
+    = f.submit 'Save', :class => 'btn btn-primary'
+

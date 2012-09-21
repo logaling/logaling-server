@@ -47,7 +47,8 @@ end
 #   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript') do
 #     DatabaseCleaner.strategy = :transaction
 #   end
-#
+OmniAuth.config.test_mode = true
+
 Before do
   LogalingServer.flush_data_directory!
 end
