@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921054114) do
+ActiveRecord::Schema.define(:version => 20120921055727) do
 
   create_table "github_projects", :force => true do |t|
     t.string   "owner"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20120921054114) do
     t.string   "target_language"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "user_id"
   end
+
+  add_index "user_configs", ["user_id"], :name => "index_user_configs_on_user_id"
 
   create_table "user_glossaries", :force => true do |t|
     t.integer  "user_id",         :null => false
