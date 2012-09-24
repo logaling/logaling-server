@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906084519) do
+ActiveRecord::Schema.define(:version => 20120921055256) do
 
   create_table "github_projects", :force => true do |t|
     t.string   "owner"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(:version => 20120906084519) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id",           :null => false
+    t.integer  "github_project_id", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "memberships", ["github_project_id"], :name => "index_memberships_on_github_project_id"
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "user_glossaries", :force => true do |t|
     t.integer  "user_id",         :null => false

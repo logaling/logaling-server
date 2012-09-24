@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
 
   has_many :user_glossaries
+  has_many :memberships, :dependent => :destroy
+  has_many :github_projects, :through => :memberships, :uniq => true
 end
