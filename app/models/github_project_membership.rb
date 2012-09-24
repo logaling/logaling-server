@@ -34,7 +34,7 @@ class GithubProjectMembership
   end
 
   def user_must_not_belongs_to_github_project_yet
-    unless Membership.where(user_id: user_id).joins(:github_project).merge(GithubProject.where(owner: project_owner, name: project_name)).empty?
+    unless Membership.for(project_owner, project_name).of(user_id).empty?
       errors.add :project_name, "は既に登録されています"
     end
   end
