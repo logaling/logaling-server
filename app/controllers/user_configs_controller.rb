@@ -11,11 +11,4 @@ class UserConfigsController < ApplicationController
   rescue => e
     redirect_to dashboard_path, notice: 'User config setting was failed.'
   end
-
-  private
-  def valid_user?
-    if current_user.id != params[:user_id].to_i
-      redirect_to dashboard_path, notice: "不正なアクセスです"
-    end
-  end
 end
