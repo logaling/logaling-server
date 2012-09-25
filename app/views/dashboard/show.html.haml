@@ -5,9 +5,20 @@
     %ul
       - @user_glossaries.each do |user_glossary|
         %li
-          - mark = @user_config.same?(user_glossary) ? "★": "☆"
+          - mark = @user_config.same?(user_glossary) ? "★" : "☆"
           = user_glossary.glossary_name
           = user_glossary.source_language
           = user_glossary.target_language
           = link_to "Show", user_glossary_path(current_user, user_glossary)
-          = link_to mark, user_config_path(current_user, user_glossary.config_key), method: :put
+          - unless @user_config.id.present?
+            = form_for @user_config, url: user_configs_path(current_user), method: :post do |f|
+              = hidden_field :user_config, :glossary_name, value: user_glossary.glossary_name
+              = hidden_field :user_config, :source_language, value: user_glossary.source_language
+              = hidden_field :user_config, :target_language, value: user_glossary.target_language
+              = f.submit mark, :class => 'btn btn-link'
+          - else
+            = form_for @user_config, url: user_config_path(current_user, @user_config), method: :put do |f|
+              = hidden_field :user_config, :glossary_name, value: user_glossary.glossary_name
+              = hidden_field :user_config, :source_language, value: user_glossary.source_language
+              = hidden_field :user_config, :target_language, value: user_glossary.target_language
+              = f.submit mark, :class => 'btn btn-link'

@@ -21,7 +21,6 @@ LogalingServer::Application.routes.draw do
     end
     resources :user_configs,
       :path => 'configs',
-      :constraints => {:id => %r{[^\.]+\.[^\.]+\.[^\.]+}},
       :as => :configs
   end
 
