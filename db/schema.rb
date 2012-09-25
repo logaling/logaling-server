@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20120924072013) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id",           :null => false
+    t.integer  "github_project_id", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "memberships", ["github_project_id"], :name => "index_memberships_on_github_project_id"
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
   create_table "user_configs", :force => true do |t|
     t.string   "glossary_name"
     t.string   "source_language"
