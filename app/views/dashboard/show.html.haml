@@ -1,5 +1,5 @@
 .well
-  %p= link_to "Create user glossary", new_user_glossary_path(:user_id => current_user)
+  %p= link_to "Create user glossary", new_user_glossary_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
 
   %p
     %ul
@@ -14,3 +14,7 @@
             = f.hidden_field :source_language, value: user_glossary.source_language
             = f.hidden_field :target_language, value: user_glossary.target_language
             = f.submit @user_config.mark_for(user_glossary), :class => 'btn btn-link'
+
+.well
+  %p= link_to 'Add new github project membership', new_user_github_project_membership_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
+

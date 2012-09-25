@@ -1,0 +1,17 @@
+= form_for [current_user, @github_project_membership] do |f|
+  -if @github_project_membership.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@github_project_membership.errors.count, "error")} prohibited this membership from being saved:"
+      %ul
+        - @github_project_membership.errors.full_messages.each do |msg|
+          %li= msg
+
+  .well
+    http://github.com/
+    = f.text_field :project_owner
+    \/
+    = f.text_field :project_name
+    = f.hidden_field :user_id, value: current_user.id
+
+  .actions
+    = f.submit 'Save', :class => 'btn btn-primary'

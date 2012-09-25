@@ -3,6 +3,9 @@ class GithubProject < ActiveRecord::Base
   include Project
   include GitBackended
 
+  has_many :memberships, :dependent => :destroy
+  has_many :users, :through => :memberships, :uniq => true
+
   validates_uniqueness_of :name, :scope => :owner
   validates_format_of :owner, :name, :with => /\A[0-9a-z\-_]+\z/
   validate :project_has_dot_logaling, on: :create
