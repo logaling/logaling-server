@@ -4,9 +4,7 @@ class UserConfigsController < ApplicationController
   before_filter :valid_user?
 
   def create
-    user_config = UserConfig.new(params[:user_config])
-    user_config.user_id = params[:user_id]
-    user_config.save!
+    current_user.create_user_config(params[:user_config])
     redirect_to dashboard_path, notice: 'User config was successfully set.'
   rescue => e
     redirect_to dashboard_path, notice: 'User config setting was failed.'
