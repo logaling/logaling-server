@@ -10,15 +10,9 @@
           = user_glossary.source_language
           = user_glossary.target_language
           = link_to "Show", user_glossary_path(current_user, user_glossary)
-          - if @user_config.new_record?
-            = form_for @user_config, url: user_configs_path(current_user) do |f|
-              = f.hidden_field :glossary_name, value: user_glossary.glossary_name
-              = f.hidden_field :source_language, value: user_glossary.source_language
-              = f.hidden_field :target_language, value: user_glossary.target_language
-              = f.submit mark, :class => 'btn btn-link'
-          - else
-            = form_for @user_config, url: user_config_path(current_user, @user_config) do |f|
-              = f.hidden_field :glossary_name, value: user_glossary.glossary_name
-              = f.hidden_field :source_language, value: user_glossary.source_language
-              = f.hidden_field :target_language, value: user_glossary.target_language
-              = f.submit mark, :class => 'btn btn-link'
+          - config_submit_path = @user_config.new_record? ? user_configs_path(current_user) : user_config_path(current_user, @user_config)
+          = form_for @user_config, url: config_submit_path do |f|
+            = f.hidden_field :glossary_name, value: user_glossary.glossary_name
+            = f.hidden_field :source_language, value: user_glossary.source_language
+            = f.hidden_field :target_language, value: user_glossary.target_language
+            = f.submit mark, :class => 'btn btn-link'
