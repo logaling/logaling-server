@@ -2,6 +2,7 @@ notifications:
   recipients:
     - koji.shimada@enishi-tech.com
     - adzuki34@gmail.com
+    - kou@clear-code.com
 language: ruby
 rvm:
   - 1.9.3
