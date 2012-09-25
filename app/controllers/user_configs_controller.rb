@@ -12,15 +12,20 @@ class UserConfigsController < ApplicationController
 
   def update
     user_config = UserConfig.find(params[:id])
-    if user_config.glossary_name == params[:user_config][:glossary_name] &&
-      user_config.source_language == params[:user_config][:source_language] &&
-      user_config.target_language == params[:user_config][:target_language]
+    if reset_of_user_config?(user_config, params[:user_config])
       user_config.destroy
-      redirect_to dashboard_path, notice: 'User config was successfully unset.'
-    elsif user_config.update_attributes!(params[:user_config])
-      redirect_to dashboard_path, notice: 'User config was successfully update.'
+    else
+      user_config.update_attributes!(params[:user_config])
     end
+    redirect_to dashboard_path, notice: 'User config was successfully update.'
   rescue => e
     redirect_to dashboard_path, notice: 'User config setting was failed.'
+  end
+
+  private
+  def reset_of_user_config?(current_user_config, submitted_config_data)
+    current_user_config.glossary_name == submitted_config_data[:glossary_name] &&
+    current_user_config.source_language == submitted_config_data[:source_language] &&
+    current_user_config.target_language == submitted_config_data[:target_language]
   end
 end
