@@ -3,6 +3,6 @@ class DashboardController < ApplicationController
 
   def show
     @user_config = current_user.user_config || UserConfig.new
-    @user_glossaries = UserGlossary.find_all_by_user_id(current_user.id)
+    @user_glossaries = current_user.user_glossaries
   end
 end
