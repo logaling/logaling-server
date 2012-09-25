@@ -25,11 +25,4 @@ class UserGlossariesController < ApplicationController
     @user_glossary.errors.add(:name, e) if @user_glossary.errors.empty?
     format.html { render action: "new" }
   end
-
-  private
-  def valid_user?
-    if current_user.id != params[:user_id].to_i
-      redirect_to dashboard_path, notice: "不正なアクセスです"
-    end
-  end
 end
