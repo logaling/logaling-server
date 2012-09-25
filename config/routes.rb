@@ -19,6 +19,9 @@ LogalingServer::Application.routes.draw do
       :as => :glossaries do
         resources :terms
     end
+    resources :user_configs,
+      :path => 'configs',
+      :as => :configs
   end
 
   match '/auth/:provider/callback', to: 'sessions#create'

@@ -28,6 +28,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'active_attr'
+gem 'active_decorator'
 gem 'omniauth-twitter'
 
 # To use ActiveModel has_secure_password

@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
 
   has_many :user_glossaries
+  has_one :user_config
+
+  def priority_glossary
+    user_config ? user_config.glossary : nil
+  end
 end
