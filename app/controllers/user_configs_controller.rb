@@ -12,7 +12,7 @@ class UserConfigsController < ApplicationController
 
   def update
     user_config = UserConfig.find(params[:id])
-    if reset_of_user_config?(user_config, params[:user_config])
+    if reset?(user_config, params[:user_config])
       user_config.destroy
     else
       user_config.update_attributes!(params[:user_config])
