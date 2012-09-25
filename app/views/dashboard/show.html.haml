@@ -10,7 +10,7 @@
           = user_glossary.source_language
           = user_glossary.target_language
           = link_to "Show", user_glossary_path(current_user, user_glossary)
-          - unless @user_config.id.present?
+          - if @user_config.new_record?
             = form_for @user_config, url: user_configs_path(current_user), method: :post do |f|
               = hidden_field :user_config, :glossary_name, value: user_glossary.glossary_name
               = hidden_field :user_config, :source_language, value: user_glossary.source_language
