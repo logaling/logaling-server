@@ -14,9 +14,4 @@ class UserConfig < ActiveRecord::Base
   def glossary
     LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
   end
-
-  private
-  def id_to_config(id)
-    id.split(".", 3)
-  end
 end

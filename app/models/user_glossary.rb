@@ -13,10 +13,6 @@ class UserGlossary < ActiveRecord::Base
     "%05d-%s" % [user_id, name]
   end
 
-  def config_key
-    "%s.%s.%s" % [glossary_name, source_language, target_language]
-  end
-
   def add!(term)
     raise ArgumentError unless term.valid?
 
