@@ -1,7 +1,20 @@
-%p#notice= notice
-
 .well
   %p= link_to "Create user glossary", new_user_glossary_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
 
+  %p
+    %ul
+      - @user_glossaries.each do |user_glossary|
+        %li
+          = user_glossary.glossary_name
+          = user_glossary.source_language
+          = user_glossary.target_language
+          = link_to "Show", user_glossary_path(current_user, user_glossary)
+          = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
+            = f.hidden_field :glossary_name, value: user_glossary.glossary_name
+            = f.hidden_field :source_language, value: user_glossary.source_language
+            = f.hidden_field :target_language, value: user_glossary.target_language
+            = f.submit @user_config.mark_for(user_glossary), :class => 'btn btn-link'
+
 .well
   %p= link_to 'Add new github project membership', new_user_github_project_membership_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
+

@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
   has_many :user_glossaries
   has_many :memberships, :dependent => :destroy
   has_many :github_projects, :through => :memberships, :uniq => true
+  has_one :user_config
+
+  def priority_glossary
+    user_config ? user_config.glossary : nil
+  end
 end

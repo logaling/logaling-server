@@ -1,3 +1,4 @@
+#coding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :signed_in?
@@ -16,6 +17,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     else
       true
+    end
+  end
+
+  def valid_user?
+    if current_user.id != params[:user_id].to_i
+      redirect_to dashboard_path, notice: "不正なアクセスです"
     end
   end
 end
