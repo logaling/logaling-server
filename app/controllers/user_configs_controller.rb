@@ -23,7 +23,7 @@ class UserConfigsController < ApplicationController
   end
 
   private
-  def reset_of_user_config?(current_user_config, submitted_config_data)
+  def reset?(current_user_config, submitted_config_data)
     current_user_config.glossary_name == submitted_config_data[:glossary_name] &&
     current_user_config.source_language == submitted_config_data[:source_language] &&
     current_user_config.target_language == submitted_config_data[:target_language]
