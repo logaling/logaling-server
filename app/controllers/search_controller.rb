@@ -1,9 +1,8 @@
 class SearchController < ApplicationController
   def index
     @query = params[:query]
+    priority_glossary = signed_in? ? current_user.priority_glossary : nil
 
-    user_config = signed_in? ? UserConfig.find_by_user_id(current_user.id) : nil
-    glossary = user_config ? user_config.glossary : nil
-    @terms = LogalingServer.repository.lookup(@query, glossary)
+    @terms = LogalingServer.repository.lookup(@query, priority_glossary)
   end
 end
