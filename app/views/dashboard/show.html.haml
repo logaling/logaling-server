@@ -10,7 +10,7 @@
   %ul.glossariesList
     - @user_glossaries.each do |user_glossary|
       %li
-        = link_to "#{user_glossary.glossary_name} #{user_glossary.source_language} #{user_glossary.target_language}", user_glossary_path(current_user, user_glossary)
+        = link_to user_glossary.link_text, user_glossary_path(current_user, user_glossary)
         %span.btn-group.actions
           = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => { :class => "btn btn-mini" } do |f|
             = f.hidden_field :glossary_name, value: user_glossary.glossary_name
@@ -43,7 +43,7 @@
           - github_project.glossaries.each_with_index do |glossary, i|
             %li
               - bilingual_pair = [glossary.source_language, glossary.target_language].join('-')
-              = link_to "#{glossary}", github_project_glossary_path(:id => bilingual_pair, :github_project_id => github_project)
+              = link_to "#{glossary.source_language} #{glossary.target_language}", github_project_glossary_path(:id => bilingual_pair, :github_project_id => github_project)
               %span.btn-group.actions
                 = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => { :class => "btn btn-mini" } do |f|
                   = f.hidden_field :glossary_name, value: glossary.name

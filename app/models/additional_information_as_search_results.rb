@@ -17,4 +17,6 @@ module AdditionalInformationAsSearchResults
   def glossary_name_without_user_id
     split_glossary_name_to_user_id_and_name[1]
   end
+
+  alias_method :glossary_name_without_github, :glossary_name_without_user_id
 end

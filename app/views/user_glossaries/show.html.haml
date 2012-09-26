@@ -1,8 +1,6 @@
 .container
   %h1
-    = @user_glossary.glossary_name
-    = @user_glossary.source_language
-    = @user_glossary.target_language
+    = @user_glossary.title_text
   %h2
     用語を登録
   .well
@@ -24,7 +22,7 @@
           = term.note
         .span2.property
           %p.logalingProject
-            (プロジェクト名)
+            = @user_glossary.link_text
           %p.btn-group.actions
             = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini'
             = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
