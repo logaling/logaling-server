@@ -12,10 +12,10 @@
       .row
         .span9
           %span.label<>
-            en
+            = @user_glossary.source_language
           = term.source_term
           %span.label<>
-            ja
+            = @user_glossary.target_language
           = term.target_term
           %span.label<>
             note
