@@ -24,6 +24,6 @@ class UserGlossariesController < ApplicationController
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'User glossary was successfully created.'
   rescue => e
     @user_glossary.errors.add(:name, e) if @user_glossary.errors.empty?
-    format.html { render action: "new" }
+    render action: "new"
   end
 end

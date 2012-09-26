@@ -1,4 +1,4 @@
-= form_for @term, url: {action: 'create'}, :html => { :class => 'form-horizontal' } do |f|
+= form_for @term, url: user_glossary_terms_path(current_user, @user_glossary), :html => { :class => 'form-horizontal' } do |f|
   -if @term.errors.any?
     #error_explanation
       %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
