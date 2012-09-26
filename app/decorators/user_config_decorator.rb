@@ -1,7 +1,7 @@
 # coding: utf-8
 module UserConfigDecorator
-  def mark_for(user_glossary)
-    same?(user_glossary) ? "★" : "☆"
+  def mark_for(glossary)
+    same?(glossary) ? "★" : "☆"
   end
 
   def submit_path_for(user)
