@@ -7,12 +7,15 @@
           %li= msg
 
   .control-group
-    http://github.com/
-    = f.text_field :project_owner#, :class => 'conrols'
-    \/
-    = f.text_field :project_name
-    = f.hidden_field :user_id, value: current_user.id
+    .control-label
+      http://github.com/
+    .controls
+      = f.text_field :project_owner#, :class => 'conrols'
+      \/
+      = f.text_field :project_name
+      = f.hidden_field :user_id, value: current_user.id
 
   .control-group
-    .btn-group.actions
-      = f.submit '登録する', :class => 'btn btn-large'
+    .controls
+      .btn-group.actions
+        = f.submit '登録する', :class => 'btn btn-large'

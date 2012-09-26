@@ -16,13 +16,16 @@
 
       .control-group
         = f.label :source_term, "Source term:", :class => 'control-label required'
-        = f.text_field :source_term
+        .controls
+          = f.text_field :source_term
       .control-group
         = f.label :target_term, "Target term:", :class => 'control-label required'
-        = f.text_field :target_term
+        .controls
+          = f.text_field :target_term
       .control-group
         = f.label :note, "Note:", :class => 'control-label'
-        = f.text_field :note
+        .controls
+          = f.text_field :note
 
       .control-group
         .controls

@@ -8,13 +8,16 @@
 
   .control-group
     = f.label :name, "Glossary name:", :class => 'control-label required'
-    = f.text_field :name
+    .controls
+      = f.text_field :name
   .control-group
     = f.label :source_language, "Source language:", :class => 'control-label required'
-    = f.text_field :source_language
+    .controls
+      = f.text_field :source_language
   .control-group
     = f.label :target_language, "Target language:", :class => 'control-label required'
-    = f.text_field :target_language
+    .controls
+      = f.text_field :target_language
 
   .control-group
     .controls

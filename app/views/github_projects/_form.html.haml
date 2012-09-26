@@ -8,11 +8,14 @@
 
   -# TODO should be just one text field
   .control-group
-    http://github.com/
-    = f.text_field :owner
-    \/
-    = f.text_field :name
+    .control-label
+      http://github.com/
+    .controls
+      = f.text_field :owner
+      \/
+      = f.text_field :name
 
   .control-group
-    .btn-group.actions
-      = f.submit '登録する', :class => 'btn btn-large'
+    .controls
+      .btn-group.actions
+        = f.submit '登録する', :class => 'btn btn-large'
