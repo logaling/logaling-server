@@ -16,11 +16,12 @@
         %p.githubProject
           = link_to term.glossary_name_without_github, '#'
       - else
-        - user_glossary = UserGlossary.find_by_term_and_user(term, current_user)
         %p.logalingProject
           = link_to term.glossary_name, '#'
-        - if user_glossary
-          %p.btn-group.actions
-            = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, term.id), :class => 'btn btn-mini'
-            = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
+          - if signed_in?
+            - user_glossary = UserGlossary.find_by_term_and_user(term, current_user)
+            - if user_glossary
+              %p.btn-group.actions
+                = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, term.id), :class => 'btn btn-mini'
+                = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
 
