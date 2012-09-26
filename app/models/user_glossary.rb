@@ -1,14 +1,5 @@
 #coding: utf-8
 class UserGlossary < ActiveRecord::Base
-  attr_accessible :name, :source_language, :target_language
-
-  belongs_to :user
-
-  validates_presence_of :name, :source_language, :target_language
-  validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
-
-  after_create :create_personal_project!
-
   class << self
     def find_by_term(term_hash, user)
       conditions = {}
@@ -20,6 +11,15 @@ class UserGlossary < ActiveRecord::Base
       UserGlossary.find(:first, :conditions => conditions)
     end
   end
+
+  attr_accessible :name, :source_language, :target_language
+
+  belongs_to :user
+
+  validates_presence_of :name, :source_language, :target_language
+  validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
+
+  after_create :create_personal_project!
 
   def glossary_name
     "%05d-%s" % [user_id, name]
