@@ -5,6 +5,7 @@ class UserGlossariesController < ApplicationController
 
   # GET /user_glossaries/1
   def show
+    @term = Term.new
     @user_glossary = UserGlossary.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render :file => 'public/404.html', :status => 404, :layout => false

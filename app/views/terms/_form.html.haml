@@ -1,4 +1,4 @@
-= form_for @term, url: {action: 'create'} do |f|
+= form_for @term, url: {action: 'create'}, :html => { :class => 'form-horizontal' } do |f|
   -if @term.errors.any?
     #error_explanation
       %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
@@ -6,14 +6,18 @@
         - @term.errors.full_messages.each do |msg|
           %li= msg
 
-  .well
-    = f.label :source_term, "Source term:"
+  .control-group
+    = f.label :source_term, "Source term:", :class => 'control-label required'
     = f.text_field :source_term
-    = f.label :target_term, "Target term:"
+  .control-group
+    = f.label :target_term, "Target term:", :class => 'control-label required'
     = f.text_field :target_term
-    = f.label :note, "Note:"
+  .control-group
+    = f.label :note, "Note:", :class => 'control-label'
     = f.text_field :note
 
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+  .control-group
+    .controls
+      .btn-group.actions
+        = f.submit '登録して公開する', :class => 'btn btn-large'
 
