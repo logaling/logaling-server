@@ -7,15 +7,15 @@
           %li= msg
 
   .control-group
-    = f.label :source_term, "Source term:", :class => 'control-label required'
+    = f.label :source_term, :class => 'control-label required'
     .controls
       = f.text_field :source_term
   .control-group
-    = f.label :target_term, "Target term:", :class => 'control-label required'
+    = f.label :target_term, :class => 'control-label required'
     .controls
       = f.text_field :target_term
   .control-group
-    = f.label :note, "Note:", :class => 'control-label'
+    = f.label :note, :class => 'control-label'
     .controls
       = f.text_field :note
 
