@@ -1,7 +1,16 @@
-- if @terms.present?
-  - @terms.each do |term|
-    = render :partial => 'shared/term', :locals => {:term => term}
-- else
-  .alert.alert-info
-    %strong Not found.
-    Try another query.
+%div.container
+  %h1
+    検索結果
+  - if @terms.present?
+    %p
+      1-
+      = @terms.size
+      件表示 / 
+      = @terms.size
+      件中
+    - @terms.each do |term|
+      = render :partial => 'shared/term', :locals => {:term => term}
+  - else
+    %p
+      = @query
+      は見つかりませんでした。

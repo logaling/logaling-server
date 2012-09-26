@@ -1,11 +1,26 @@
-.term.well
-  %span.source-language.label= term[:source_language]
-  %span.source-term= render_sinpped(term[:snipped_source_term])
-  %span.target-language.label= term[:target_language]
-  %span.target-term= term[:target_term]
-  - if term[:note].present?
-    %i.icon-pencil
-    %span.note= term[:note]
-  .pull-right
-    %i.icon-folder-open
-    %span= term[:glossary_name]
+.term
+  .row
+    .span9
+      %span.label<>
+        = term[:source_language]
+      = render_sinpped(term[:snipped_source_term])
+      %span.label<>
+        = term[:target_language]
+      = term[:target_term]
+      %i.icon-pencil
+        %span= term[:note]
+    .span2.property
+      - if github_project?(term[:glossary_name])
+        %p.githubProject
+          = link_to term[:glossary_name], '#'
+      - else
+        - user_glossary = UserGlossary.find_by_term(term, current_user)
+        %p.logalingProject
+          = link_to term[:glossary_name], '#'
+        - if user_glossary
+          %p.btn-group.actions
+            %a.btn.btn-mini{ :href => '#', :title => '編集' }
+              %i.icon-pencil
+            %a.btn.btn-mini{ :href => '#', :title => '削除する' }
+              %i.icon-trash
+
