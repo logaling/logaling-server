@@ -37,13 +37,10 @@
               - if Rails.env.development?
                 %li= link_to "用語を登録（サインイン）(for dev)", "/auth/developer"
 
-    .container
-      - [:notice, :alert, :error].map {|k| flash[k] }.reject {|msg| msg.blank? }.each do |msg|
-        %p= msg
-      = yield
+    = yield
 
-      %footer
-        %p &copy; logaling project
+    %footer
+      %p &copy; logaling project
     /
       Le javascript
       \==================================================
