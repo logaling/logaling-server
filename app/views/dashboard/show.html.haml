@@ -18,3 +18,8 @@
 .well
   %p= link_to 'Add new github project membership', new_user_github_project_membership_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
 
+  %p
+    %ul
+      - @github_projects.each do |github_project|
+        %li
+          = github_project.full_name
