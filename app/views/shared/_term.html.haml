@@ -19,8 +19,6 @@
           = link_to term[:glossary_name], '#'
         - if user_glossary
           %p.btn-group.actions
-            %a.btn.btn-mini{ :href => '#', :title => '編集' }
-              %i.icon-pencil
-            %a.btn.btn-mini{ :href => '#', :title => '削除する' }
-              %i.icon-trash
+            = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, get_term_id(term)), :class => 'btn btn-mini'
+            = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, get_term_id(term)), method: :delete, :class => 'btn btn-mini'
 
