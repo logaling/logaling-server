@@ -1,4 +1,4 @@
-= form_for @github_project do |f|
+= form_for @github_project, :html => { :class => "form-horizontal" } do |f|
   -if @github_project.errors.any?
     #error_explanation
       %h2= "#{pluralize(@github_project.errors.count, "error")} prohibited this github_project from being saved:"
@@ -7,11 +7,12 @@
           %li= msg
 
   -# TODO should be just one text field
-  .well
+  .control-group
     http://github.com/
     = f.text_field :owner
     \/
     = f.text_field :name
 
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+  .control-group
+    .btn-group.actions
+      = f.submit '登録する', :class => 'btn btn-large'
