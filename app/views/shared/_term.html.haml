@@ -7,8 +7,10 @@
       %span.label<>
         = term[:target_language]
       = term[:target_term]
-      %i.icon-pencil
-        %span= term[:note]
+      - unless term[:note].empty?
+        %span.label<>
+          = "note"
+        = term[:note]
     .span2.property
       - if github_project?(term[:glossary_name])
         %p.githubProject
