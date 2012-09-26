@@ -34,8 +34,9 @@
               %li= link_to current_user.name, dashboard_path
               %li= link_to "サインアウト", signout_path
             - else
+              %li= link_to "用語を登録（サインイン）", "/signin"
               - if Rails.env.development?
-                %li= link_to "用語を登録（サインイン）(for dev)", "/auth/developer"
+                %li= link_to "(for dev)", "/auth/developer"
 
     = yield
 
