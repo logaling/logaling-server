@@ -2,25 +2,25 @@
   .row
     .span9
       %span.label<>
-        = term[:source_language]
-      = render_sinpped(term[:snipped_source_term])
+        = term.source_language
+      = render_sinpped(term.snipped_source_term)
       %span.label<>
-        = term[:target_language]
-      = term[:target_term]
-      - unless term[:note].empty?
+        = term.target_language
+      = term.target_term
+      - unless term.note.empty?
         %span.label<>
           = "note"
-        = term[:note]
+        = term.note
     .span2.property
-      - if github_project?(term[:glossary_name])
+      - if github_project?(term.glossary_name)
         %p.githubProject
-          = link_to term[:glossary_name], '#'
+          = link_to term.glossary_name, '#'
       - else
-        - user_glossary = UserGlossary.find_by_term(term, current_user)
+        - user_glossary = UserGlossary.find_by_term_and_user(term, current_user)
         %p.logalingProject
-          = link_to term[:glossary_name], '#'
+          = link_to term.glossary_name, '#'
         - if user_glossary
           %p.btn-group.actions
-            = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, get_term_id(term)), :class => 'btn btn-mini'
-            = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, get_term_id(term)), method: :delete, :class => 'btn btn-mini'
+            = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, term.id), :class => 'btn btn-mini'
+            = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
 
