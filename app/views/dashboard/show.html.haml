@@ -23,3 +23,12 @@
       - @github_projects.each do |github_project|
         %li
           = github_project.full_name
+          %ul
+            - github_project.glossaries.each do |glossary|
+              %li
+                = glossary
+                = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
+                  = f.hidden_field :glossary_name, value: glossary.name
+                  = f.hidden_field :source_language, value: glossary.source_language
+                  = f.hidden_field :target_language, value: glossary.target_language
+                  = f.submit @user_config.mark_for(glossary), :class => 'btn btn-link'

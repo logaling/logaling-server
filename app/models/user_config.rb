@@ -5,10 +5,16 @@ class UserConfig < ActiveRecord::Base
 
   belongs_to :user
 
-  def same?(user_glossary)
-    glossary_name == user_glossary.glossary_name &&
-    source_language == user_glossary.source_language &&
-    target_language == user_glossary.target_language
+  def same?(glossary)
+    if glossary.respond_to?(:glossary_name)
+      glossary_name == glossary.glossary_name &&
+      source_language == glossary.source_language &&
+      target_language == glossary.target_language
+    else
+      glossary_name == glossary.name &&
+      source_language == glossary.source_language &&
+      target_language == glossary.target_language
+    end
   end
 
   def glossary
