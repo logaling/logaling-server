@@ -1,34 +1,52 @@
-.well
-  %p= link_to "Create user glossary", new_user_glossary_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
+%h1
+  マイページ
+%h2
+  わたしの用語集
+%p
+  =link_to "新しい用語集をつくる", new_user_glossary_path(:user_id => current_user), :class => 'addNewProjectBtn'
+%h3
+  用語集一覧
+%ul.glossariesList
+  - @user_glossaries.each do |user_glossary|
+    %li
+      = link_to "#{user_glossary.glossary_name} #{user_glossary.source_language} #{user_glossary.target_language}", user_glossary_path(current_user, user_glossary)
+      %span.btn-group.actions
+        %a.btn.btn-mini{ :href => '#', :title => '検索結果の優先順位を上げる' }
+          %i.icon-star
+        %a.btn.btn-mini{ :href => '#', :title => '編集する' }
+          %i.icon-pencil
+        %a.btn.btn-mini{ :href => '#', :title => '複製する' }
+          %i.icon-plus
+        %a.btn.btn-mini{ :href => '#', :title => '削除する' }
+          %i.icon-trash
+      = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
+        = f.hidden_field :glossary_name, value: user_glossary.glossary_name
+        = f.hidden_field :source_language, value: user_glossary.source_language
+        = f.hidden_field :target_language, value: user_glossary.target_language
+        = f.submit @user_config.mark_for(user_glossary), :class => 'btn btn-link'
 
-  %p
-    %ul
-      - @user_glossaries.each do |user_glossary|
-        %li
-          = user_glossary.glossary_name
-          = user_glossary.source_language
-          = user_glossary.target_language
-          = link_to "Show", user_glossary_path(current_user, user_glossary)
-          = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
-            = f.hidden_field :glossary_name, value: user_glossary.glossary_name
-            = f.hidden_field :source_language, value: user_glossary.source_language
-            = f.hidden_field :target_language, value: user_glossary.target_language
-            = f.submit @user_config.mark_for(user_glossary), :class => 'btn btn-link'
-
-.well
-  %p= link_to 'Add new github project membership', new_user_github_project_membership_path(:user_id => current_user), :class => 'btn btn-large btn-primary'
-
-  %p
-    %ul
-      - @github_projects.each do |github_project|
-        %li
-          = github_project.full_name
-          %ul
-            - github_project.glossaries.each do |glossary|
-              %li
-                = glossary
-                = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
-                  = f.hidden_field :glossary_name, value: glossary.name
-                  = f.hidden_field :source_language, value: glossary.source_language
-                  = f.hidden_field :target_language, value: glossary.target_language
-                  = f.submit @user_config.mark_for(glossary), :class => 'btn btn-link'
+%h2
+  参加しているGitHubプロジェクトの管理
+%p
+  =link_to 'プロジェクトを登録する', new_user_github_project_membership_path(:user_id => current_user), :class => 'addNewProjectBtn'
+%h3
+  プロジェクト一覧
+%ul.projectsList
+  - @github_projects.each do |github_project|
+    %li
+      = github_project.full_name
+      %ul.glossariesList
+        - github_project.glossaries.each do |glossary|
+          %li
+            - bilingual_pair = [glossary.source_language, glossary.target_language].join('-')
+            = link_to "#{glossary}", github_project_glossary_path(:id => bilingual_pair, :github_project_id => github_project)
+            %span.btn-group.actions
+              %a.btn.btn-mini{ :href => '#', :title => '検索結果の優先順位を上げる' }
+                %i.icon-star
+              %a.btn.btn-mini{ :href => '#', :title => '削除する' }
+                %i.icon-trash
+            = form_for @user_config, url: @user_config.submit_path_for(current_user) do |f|
+              = f.hidden_field :glossary_name, value: glossary.name
+              = f.hidden_field :source_language, value: glossary.source_language
+              = f.hidden_field :target_language, value: glossary.target_language
+              = f.submit @user_config.mark_for(glossary), :class => 'btn btn-link'
