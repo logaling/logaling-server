@@ -1,8 +1,13 @@
-.term.well
-  %span.source-language.label= term[:source_language]
-  %span.source-term= term[:source_term]
-  %span.target-language.label= term[:target_language]
-  %span.target-term= term[:target_term]
-  - if term[:note].present?
-    %i.icon-pencil
-    %span.note= term[:note]
+.term
+  .row
+    .span9
+      %span.label<>
+        =term[:source_language]
+      = term[:source_term]
+      %span.label<>
+        =term[:target_language]
+      = term[:target_term]
+      - if term[:note].present?
+        %span.label<>
+          = "note"
+        = term[:note]

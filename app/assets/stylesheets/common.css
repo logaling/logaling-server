@@ -1,0 +1,282 @@
+@charset "UTF-8";
+/*--- Mix-in -------------------------------------------------------- */
+/*--- Variables -------------------------------------------------------- */
+/*--- Default settings -------------------------------------------------------- */
+html {
+  background: #e8f0ed; }
+
+body {
+  background: #e0e9eb;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; }
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #13608d; }
+
+* {
+  color: #535353; }
+
+section > h1,
+h2 {
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  borderRadius: 4px; }
+
+section > h1 {
+  color: white;
+  font-size: 100%;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center; }
+
+.container > header nav {
+  float: right;
+  text-align: right;
+  display: inline-block; }
+  .container > header nav li {
+    display: inline-block; }
+
+::-webkit-input-placeholder {
+  color: #999999; }
+
+input[placeholder] {
+  color: #999999; }
+
+time {
+  color: #999999; }
+
+/*--- Override -------------------------------------------------------- */
+.brand {
+  max-width: 100%; }
+
+.pagination {
+  text-align: center;
+  clear: both;
+  margin-top: 50px; }
+
+.form-horizontal label {
+  margin-right: 10px; }
+
+/*--- Common classes and IDs -------------------------------------------------------- */
+body > header nav {
+  text-align: right;
+  margin-top: 20px; }
+
+body > .container > h1 {
+  -webkit-box-shadow: -1px -1px 1px #999999;
+  -moz-box-shadow: -1px -1px 1px #999999;
+  box-shadow: -1px -1px 1px #999999;
+  -moz-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  borderRadius: 7px;
+  margin-top: 30px;
+  padding: 30px 10px;
+  color: #c4272f;
+  font-weight: bold;
+  background: url(commonHeaderWhiteSmoke.png) no-repeat top left;
+  font-size: 160%; }
+body > .container > h2 {
+  -webkit-box-shadow: -1px -1px 1px #999999;
+  -moz-box-shadow: -1px -1px 1px #999999;
+  box-shadow: -1px -1px 1px #999999;
+  -moz-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  borderRadius: 7px;
+  color: white;
+  font-weight: bold;
+  background: url(commonHeaderRedSmoke.png) no-repeat top left;
+  padding: 0 10px;
+  margin: 40px 0 10px 0;
+  font-size: 140%; }
+body > .container > h3 {
+  color: #c4272f;
+  font-size: 120%; }
+
+.userNav {
+  margin-top: 4px; }
+  .userNav ul {
+    margin: 2px 0 0 0; }
+  .userNav li {
+    display: inline-block;
+    margin-left: 10px; }
+
+.catch {
+  -webkit-box-shadow: -1px -1px 1px #cccccc;
+  -moz-box-shadow: -1px -1px 1px #cccccc;
+  box-shadow: -1px -1px 1px #cccccc;
+  background: url("homeCatchBg.png") repeat left top;
+  padding: 100px 0;
+  margin: 10px 0; }
+  .catch h1 {
+    color: #c4252e; }
+
+.learnMore:link, .learnMore:visited, .learnMore:hover, .learnMore:active {
+  color: #c4252e; }
+
+.addNewProject h1 {
+  color: #c4252e; }
+
+.addNewProjectBtn {
+  background-color: #c4252e;
+  -moz-border-radius: 30px;
+  -khtml-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  borderRadius: 30px;
+  background: linear-gradient(#c4252e, #891a20);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c4252e), color-stop(1, #891a20));
+  background: -moz-linear-gradient(top, #c4252e, #891a20);
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 140%;
+  margin: 20px auto;
+  border: 2px solid #8c1e23;
+  max-width: 300px;
+  height: 60px;
+  line-height: 60px; }
+  .addNewProjectBtn:link, .addNewProjectBtn:visited, .addNewProjectBtn:hover, .addNewProjectBtn:active {
+    color: white;
+    text-decoration: none; }
+  .addNewProjectBtn:hover, .addNewProjectBtn:active {
+    background: linear-gradient(#ca3b43, #953137);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ca3b43), color-stop(1, #953137));
+    background: -moz-linear-gradient(top, #ca3b43, #953137); }
+
+.projectsList ul {
+  margin: 20px 10px; }
+.projectsList li {
+  list-style: none;
+  padding-left: 26px;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  borderRadius: 4px;
+  margin: 20px 0;
+  position: relative;
+  background: url("commonListProject.png") no-repeat left top; }
+  .projectsList li .actions {
+    position: absolute;
+    right: 5px; }
+
+.glossariesList ul {
+  margin: 20px 10px; }
+.glossariesList li {
+  list-style: none;
+  padding-left: 26px;
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  borderRadius: 4px;
+  margin: 20px 0;
+  position: relative;
+  background: url("commonListGlossary.png") no-repeat left top; }
+  .glossariesList li .actions {
+    position: absolute;
+    right: 5px; }
+
+.term {
+  -moz-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  borderRadius: 4px;
+  padding: 10px;
+  background: white;
+  margin: 10px 0; }
+  .term .label {
+    margin-right: 10px; }
+    .term .label:nth-child(n+2) {
+      margin-left: 20px; }
+
+.property {
+  line-height: 22px;
+  min-height: 22px;
+  font-size: 80%; }
+  .property i.icon-folder-open {
+    margin-left: 5px; }
+  .property p {
+    margin: 0; }
+  .property .actions {
+    text-align: right; }
+
+.logalingProject {
+  list-style: none;
+  padding-left: 26px;
+  display: block;
+  background: url("commonLogalingMini.png") no-repeat left top; }
+
+.githubProject {
+  list-style: none;
+  padding-left: 26px;
+  background: url("commonGithubMini.png") no-repeat left top; }
+
+.signIn section {
+  margin: 10px 0;
+  -moz-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  borderRadius: 7px;
+  border: 3px solid white; }
+  .signIn section h1 {
+    color: #2580b6; }
+
+.signInBtn {
+  background: #0c7cb6;
+  -moz-border-radius: 30px;
+  -khtml-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  borderRadius: 30px;
+  background: linear-gradient(#0c7cb6, #08577f);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0c7cb6), color-stop(1, #08577f));
+  background: -moz-linear-gradient(top, #0c7cb6, #08577f);
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 140%;
+  margin: 20px auto;
+  border: 2px solid #174760;
+  max-width: 300px;
+  height: 60px;
+  line-height: 60px; }
+  .signInBtn:link, .signInBtn:visited, .signInBtn:hover, .signInBtn:active {
+    color: white;
+    text-decoration: none; }
+  .signInBtn:hover, .signInBtn:active {
+    background: linear-gradient(#2589bd, #21688c);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2589bd), color-stop(1, #21688c));
+    background: -moz-linear-gradient(top, #2589bd, #21688c); }
+
+.required:before {
+  content: "*";
+  color: #c4252e; }
+
+footer nav li,
+.userNav li,
+.listMarkBlue li {
+  list-style: none;
+  padding-left: 26px;
+  background: url("commonListMarkBlue.png") no-repeat left top; }
+
+body > footer {
+  font-size: 80%;
+  clear: both;
+  background: #e8f0ed;
+  margin-top: 20px; }
+  body > footer nav {
+    margin-top: 10px;
+    width: 200px;
+    display: inline-block; }
+
+.copyright {
+  text-align: right; }
+  .copyright * {
+    color: #bbbbbb; }
+
+/*--- Responsive -------------------------------------------------------- */
+@media only screen and (max-width: 768px) {
+  .catch {
+    padding: 30px 15px; } }
