@@ -17,6 +17,7 @@ class UserGlossary < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
 
   after_create :create_personal_project!
+  after_destroy :remove_personal_project!
 
   scope :with_name, lambda {|name|
     where(name: name)
@@ -93,6 +94,11 @@ class UserGlossary < ActiveRecord::Base
 
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
+    LogalingServer.repository.index
+  end
+
+  def remove_personal_project!
+    LogalingServer.repository.remove_personal_project(glossary_name, source_language, target_language)
     LogalingServer.repository.index
   end
 end
