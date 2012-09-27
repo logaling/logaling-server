@@ -17,7 +17,7 @@ LogalingServer::Application.routes.draw do
       :only => [:new, :create]
     resources :user_glossaries,
       :path => 'glossaries',
-      :only => [:new, :create, :show],
+      :only => [:new, :create, :show, :destroy],
       :as => :glossaries do
         resources :terms
     end
