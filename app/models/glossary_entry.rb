@@ -8,7 +8,7 @@ class GlossaryEntry
   class << self
     def find(id)
       source_term, target_term = id_to_source_term_and_target_term(id)
-      Term.new do |t|
+      GlossaryEntry.new do |t|
         t.source_term = source_term
         t.target_term = target_term
       end
