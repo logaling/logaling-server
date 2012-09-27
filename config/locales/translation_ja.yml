@@ -19,5 +19,11 @@ ja:
         source_term: 原語
         target_term: 訳語
         note: 備考
-
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "..."
 

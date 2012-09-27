@@ -30,6 +30,7 @@ gem 'omniauth-facebook'
 gem 'active_attr'
 gem 'active_decorator'
 gem 'omniauth-twitter'
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
