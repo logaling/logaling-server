@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :provider, :uid
 
-  has_many :user_glossaries
+  has_many :user_glossaries, :dependent => :destroy
   has_many :memberships, :dependent => :destroy
   has_many :github_projects, :through => :memberships, :uniq => true
-  has_one :user_config
+  has_one :user_config, :dependent => :destroy
 
   def priority_glossary
     user_config ? user_config.glossary : nil
