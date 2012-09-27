@@ -15,7 +15,7 @@ ja:
 
   activemodel:
     attributes:
-      term:
+      glossary_entry:
         source_term: 原語
         target_term: 訳語
         note: 備考
