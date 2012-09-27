@@ -4,13 +4,15 @@
     = @title
   - if @terms.present?
     %p
-      1-
-      = @terms.size
+      = count_of_starting_position(@per_count, @terms.current_page)
+      \-
+      = count_of_end_position(@per_count, @terms.current_page, @terms.count)
       件表示 /
-      = @terms.size
+      = @terms.total_count
       件中
     - @terms.each do |term|
       = render :partial => 'shared/term', :locals => {:term => term}
+    = paginate @terms
   - else
     %p
       = @query

@@ -8,7 +8,7 @@
     = render 'terms/form'
   %h2
     登録されてる用語一覧
-  - @user_glossary.terms.each do |term|
+  - @registered_terms.each do |term|
     .term
       .row
         .span9
@@ -27,3 +27,4 @@
           %p.btn-group.actions
             = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini'
             = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
+  = paginate @registered_terms
