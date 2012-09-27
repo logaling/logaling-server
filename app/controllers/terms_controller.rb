@@ -7,7 +7,7 @@ class TermsController < ApplicationController
   end
 
   def create
-    @term = GlossaryEntry.new(params[:term])
+    @term = GlossaryEntry.new(params[:glossary_entry])
     @user_glossary.add!(@term)
 
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully added.'
@@ -21,7 +21,7 @@ class TermsController < ApplicationController
 
   def update
     @term = GlossaryEntry.load(params[:id], @user_glossary)
-    new_term = GlossaryEntry.new(params[:term])
+    new_term = GlossaryEntry.new(params[:glossary_entry])
     @user_glossary.update(@term, new_term)
 
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully updated.'
