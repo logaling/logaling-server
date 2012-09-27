@@ -1,8 +1,9 @@
+- @title = "用語の編集"
 .container
   %h1
     = @user_glossary.title_text
   %h2
-    用語の編集
+    = @title
   .well
     = form_for @term, url: user_glossary_term_path(current_user, @user_glossary, @term.id), method: :put, :html => { :class => 'form-horizontal' } do |f|
       -if @term.errors.any?
