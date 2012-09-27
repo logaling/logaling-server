@@ -24,8 +24,7 @@
             %i.icon-pencil
           %a.btn.btn-mini{ :href => '#', :title => '複製する' }
             %i.icon-plus
-          %a.btn.btn-mini{ :href => '#', :title => '削除する' }
-            %i.icon-trash
+          = link_to raw("<i class=icon-trash></i>"), user_glossary_path(current_user, user_glossary), method: :delete, :class => 'btn btn-mini'
 
   %h2
     参加しているGitHubプロジェクトの管理
