@@ -1,0 +1,42 @@
+@charset "UTF-8"
+
+@mixin border-radius($radius)
+  -moz-border-radius: #{$radius}px
+  -khtml-border-radius: #{$radius}px
+  -webkit-border-radius: #{$radius}px
+  border-radius: #{$radius}px
+
+@mixin gradient_top_bottom($top, $bottom)
+  background: linear-gradient(#{$top}, #{$bottom})
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #{$top}),color-stop(1, #{$bottom}))
+  background: -moz-linear-gradient(top, #{$top}, #{$bottom})
+
+@mixin floating-avatar
+  img
+    float: left
+  p,
+  div
+    margin: 0 0 0 30px
+
+@mixin prettyprint
+  pre
+    border: 1px solid #ddd
+    @include border-radius(4)
+    padding: 10px
+    background: #fff
+  li.L0,
+  li.L2,
+  li.L4,
+  li.L6,
+  li.L8
+    background: #f6f6f6
+  li
+    margin-bottom: 20px
+  ol li
+    list-style: decimal
+    margin: 0
+
+@mixin small-text
+  font-size: 90%
+  color: #999
+

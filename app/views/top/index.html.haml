@@ -1,13 +1,22 @@
-.hero-unit
-  %h1 Use logaling
-  %p and translate the world.
-  = link_to raw('Learn more &raquo;'), 'http://logaling.github.com/', :class => 'btn btn-primary btn-large'
+- @title = "HOME"
+.catch
+  .container
+    %h1
+      Use logaling and translate the world.
+    %p
+      = link_to 'Learn more »', 'http://logaling.github.com/', :class => 'learnMore'
 
-%h2 Projects using logaling
-- @projects.each do |project|
-  .well
-    %i.icon-folder-open
-    = link_to project.full_name, project
-
-%p
-  = link_to 'Add new project', new_github_project_path, :class => 'btn btn-large btn-primary'
+.container
+  .row
+    %section.span4.addNewProject
+      %h1
+        GitHubプロジェクトを登録する
+      %p
+        = link_to 'プロジェクトを登録する', new_github_project_path, :class => 'addNewProjectBtn'
+    %section.span8.projectsList
+      %h1
+        =image_tag 'homeProjectsUsingLogaling.png', :alt => 'Projects using logaling'
+      %ul
+        - @projects.each do |project|
+          %li
+            = link_to project.full_name, project

@@ -1,9 +1,23 @@
 ja:
   activerecord:
     models:
-      github_project: githubプロジェクト
+      github_project: Githubプロジェクト
+      user_glossary: 用語集
 
     attributes:
       github_project:
         owner: ユーザ
         name: プロジェクト
+      user_glossary:
+        name: 名前
+        source_language: 元言語
+        target_language: 翻訳言語
+
+  activemodel:
+    attributes:
+      term:
+        source_term: 原語
+        target_term: 訳語
+        note: 備考
+
+

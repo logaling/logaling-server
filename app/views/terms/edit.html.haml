@@ -1,20 +1,33 @@
-%h1 Edit Term
-= form_for @term, url: user_glossary_term_path(current_user, @user_glossary, @term.id), method: :put do |f|
-  -if @term.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
-      %ul
-        - @term.errors.full_messages.each do |msg|
-          %li= msg
-
+- @title = "用語の編集"
+.container
+  %h1
+    = @user_glossary.title_text
+  %h2
+    = @title
   .well
-    = f.label :source_term, "Source term:"
-    = f.text_field :source_term
-    = f.label :target_term, "Target term:"
-    = f.text_field :target_term
-    = f.label :note, "Note:"
-    = f.text_field :note
+    = form_for @term, url: user_glossary_term_path(current_user, @user_glossary, @term.id), method: :put, :html => { :class => 'form-horizontal' } do |f|
+      -if @term.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
+          %ul
+            - @term.errors.full_messages.each do |msg|
+              %li= msg
 
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+      .control-group
+        = f.label :source_term, :class => 'control-label required'
+        .controls
+          = f.text_field :source_term
+      .control-group
+        = f.label :target_term, :class => 'control-label required'
+        .controls
+          = f.text_field :target_term
+      .control-group
+        = f.label :note, :class => 'control-label'
+        .controls
+          = f.text_field :note
+
+      .control-group
+        .controls
+          .btn-group.actions
+            = f.submit '更新する', :class => 'btn btn-lerge'
 

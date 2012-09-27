@@ -1,5 +1,14 @@
 #coding: utf-8
 class UserGlossary < ActiveRecord::Base
+  class << self
+    def find_by_term_and_user(term, user)
+      return nil unless term.owner?(user)
+      user.user_glossaries.with_name(term.glossary_name_without_user_id)
+                          .of_bilingualr_pair(term.source_language, term.target_language)
+                          .first
+    end
+  end
+
   attr_accessible :name, :source_language, :target_language
 
   belongs_to :user
@@ -8,6 +17,14 @@ class UserGlossary < ActiveRecord::Base
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
 
   after_create :create_personal_project!
+
+  scope :with_name, lambda {|name|
+    where(name: name)
+  }
+
+  scope :of_bilingualr_pair, lambda {|source_language, target_language|
+    where(source_language: source_language, target_language: target_language)
+  }
 
   def glossary_name
     "%05d-%s" % [user_id, name]

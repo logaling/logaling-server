@@ -1,4 +1,4 @@
-= form_for @user_glossary do |f|
+= form_for @user_glossary, :html => { :class => 'form-horizontal' } do |f|
   -if @user_glossary.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user_glossary.errors.count, "error")} prohibited this user_glossary from being saved:"
@@ -6,13 +6,20 @@
         - @user_glossary.errors.full_messages.each do |msg|
           %li= msg
 
-  .well
-    = f.label :name, "Glossary name:"
-    = f.text_field :name
-    = f.label :source_language, "Source language:"
-    = f.text_field :source_language
-    = f.label :target_language, "Target language:"
-    = f.text_field :target_language
+  .control-group
+    = f.label :name, :class => 'control-label required'
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :source_language, :class => 'control-label required'
+    .controls
+      = f.text_field :source_language
+  .control-group
+    = f.label :target_language, :class => 'control-label required'
+    .controls
+      = f.text_field :target_language
 
-  .actions
-    = f.submit 'Save', :class => 'btn btn-primary'
+  .control-group
+    .controls
+      .btn-group.actions
+        = f.submit '登録する', :class => 'btn btn-lerge'

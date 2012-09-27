@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title= ['logaling', @title].flatten.compact.join(' | ')
+    %title= ['logalingけんさく', @title].flatten.compact.join(' | ')
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
@@ -16,34 +16,39 @@
     %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
 
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          = link_to "logaling", root_path, :class => 'brand'
-          = form_tag search_path, :method => :get, :class => 'navbar-search pull-left' do
-            = text_field_tag :query, @query, :class => 'search-query', :placeholder => 'Search'
-            = submit_tag 'Search', style: 'display: none'
-          %ul.nav.pull-right
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    %header.container
+      .row
+        .span4
+          .brand
+            = link_to image_tag('commonLogo.png', { :alt => 'logalingけんさく'}), root_path, :class => 'brand'
+        %nav.span4
+          = form_tag search_path, :method => :get, :class => 'form-search' do
+            .input-append
+              = text_field_tag :query, @query, :class => 'search-query', :placeholder => '単語/フレーズを入力'
+              %button.btn{ :type => 'submit' }
+                検索
+        %nav.span4
+          %ul.userNav
             - if signed_in?
               %li= link_to current_user.name, dashboard_path
-              %li.divider-vertical
-              %li= link_to "Sign out", signout_path
+              %li= link_to "サインアウト", signout_path
             - else
+              %li= link_to "用語を登録（サインイン）", "/signin"
               - if Rails.env.development?
-                %li= link_to "Sign in (for dev)", "/auth/developer"
-              - %w(github facebook twitter).each do |provider|
-                %li= link_to "Sign in with #{provider.capitalize}", "/auth/#{provider}"
+                %li= link_to "(for dev)", "/auth/developer"
 
-    .container
-      - [:notice, :alert, :error].map {|k| flash[k] }.reject {|msg| msg.blank? }.each do |msg|
-        %p= msg
-      .content
-        .row
-          .span12
-            = yield
+    = yield
 
-      %footer
-        %p &copy; logaling project
+    %footer
+      .container
+        %nav
+          %ul
+            %li
+              = link_to "logaling-command", "http://logaling.github.com"
+        .copyright
+          %p
+            &copy; 2012 logaling project
     /
       Le javascript
       \==================================================

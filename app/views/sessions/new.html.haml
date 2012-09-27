@@ -1,0 +1,11 @@
+- @title = "サインイン"
+.container.signIn
+  %h1
+    = @title
+  - %w(GitHub Facebook Twitter).each do |provider|
+    .span8.offset2
+      %section
+        %h1
+          = "#{provider}アカウントでサインイン"
+        %p
+          = link_to image_tag("signInWith#{provider}.png", :alt => "Sign in with #{provider}"), "/auth/#{provider.downcase}", :class => 'signInBtn'

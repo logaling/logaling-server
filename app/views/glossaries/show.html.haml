@@ -1,11 +1,12 @@
-%p#notice= notice
-
-.well
-  %h2= @github_project.full_name
-  %p= @github_project.remote_repository_url
+- @title = "#{@github_project.full_name} #{@glossary.source_language} #{@glossary.target_language} の用語一覧"
+.container
+  %h1
+    = @github_project.full_name
+    = @glossary.source_language
+    = @glossary.target_language
   %p
-    %i.icon-folder-open
-    = "%s-%s" % [@glossary.source_language, @glossary.target_language]
-
-- @glossary.terms.each do |term|
-  = render :partial => 'term', :locals => {:term => term}
+    = @github_project.remote_repository_url
+  %h2
+    登録されてる用語一覧
+  - @glossary.terms.each do |term|
+    = render :partial => 'term', :locals => {:term => term}
