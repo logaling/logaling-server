@@ -15,12 +15,12 @@ end
 もし /^"([^"]*)"ユーザの"([^"]*)"プロジェクトを登録する$/ do |owner, project|
   fill_in 'github_project_owner', with: owner
   fill_in 'github_project_name', with: project
-  click_on 'Save'
+  click_on '登録する'
 end
 
 もし /^"([^"]*)"と検索する$/ do |query|
   fill_in 'query', with: query
-  click_on 'Search'
+  click_on '検索'
 end
 
 ならば /^"([^"]*)"ユーザの"([^"]*)"プロジェクトが登録されていないこと$/ do |owner, project|

@@ -11,3 +11,8 @@ end
 もし /^"([^"]*)"をクリックする$/ do |arg|
   step %Q{"#{arg}"リンクをクリックする}
 end
+
+ならば /^対訳用語集"([^"]*)"が作成済みであること$/ do |glossary_name|
+  page.should have_content(glossary_name)
+end
+

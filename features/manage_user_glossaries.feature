@@ -10,10 +10,9 @@
     かつ ダッシュボードを表示している
 
   シナリオ: 対訳用語集を新規作成できる
-    前提 "Create user glossary"リンクをクリックする
-    もし "Glossary name:"に"my_glossary"と入力する
-    かつ "Source language:"に"en"と入力する
-    かつ "Target language:"に"ja"と入力する
-    かつ "Save"をクリックする
-    ならば "User glossary was successfully created."と表示されていること
-
+    前提 "新しい用語集をつくる"リンクをクリックする
+    もし "名前"に"my_glossary"と入力する
+    かつ "元言語"に"en"と入力する
+    かつ "翻訳言語"に"ja"と入力する
+    かつ "登録する"をクリックする
+    ならば 対訳用語集"my_glossary en ja"が作成済みであること
