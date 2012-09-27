@@ -83,7 +83,7 @@ class UserGlossary < ActiveRecord::Base
   def terms(annotation=nil)
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
-    terms = glossary.terms(annotation).map { |term_attrs| Term.new(term_attrs) }
+    terms = glossary.terms(annotation).map { |term_attrs| GlossaryEntry.new(term_attrs) }
   end
 
   private
@@ -93,5 +93,6 @@ class UserGlossary < ActiveRecord::Base
 
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
+    LogalingServer.repository.index
   end
 end
