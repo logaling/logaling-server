@@ -1,5 +1,10 @@
 #coding: utf-8
-class Term
+
+# Although we would like to set the name of this to Term,
+# it is difficult owing to the following:
+#   http://stackoverflow.com/questions/1736747/how-to-resolve-rails-model-namespace-collision
+# Therefore, it is provisionally considered as the following names.
+class GlossaryEntry
   class << self
     def find(id)
       source_term, target_term = id_to_source_term_and_target_term(id)
