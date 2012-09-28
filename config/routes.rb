@@ -14,7 +14,7 @@ LogalingServer::Application.routes.draw do
 
   resources :users, :only => [] do
     resources :github_project_memberships,
-      :only => [:new, :create]
+      :only => [:new, :create, :destroy]
     resources :user_glossaries,
       :path => 'glossaries',
       :only => [:new, :create, :show, :destroy],
