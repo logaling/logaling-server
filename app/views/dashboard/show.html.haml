@@ -20,7 +20,7 @@
             %label{ :for => "commit_#{user_glossary.id}" }
               %i{ :class => 'icon-star' }
             = f.submit '', :class => 'hidden', :id => "commit_#{user_glossary.id}"
-          = link_to raw("<i class=icon-file></i>"), new_user_glossary_path(current_user)+"?original_user_glossary_id=#{user_glossary.id}", :class => 'btn btn-mini'
+          = link_to raw("<i class=icon-file></i>"), new_user_glossary_path(current_user, original_user_glossary_id: user_glossary.id), { :class => 'btn btn-mini' }
           = link_to raw("<i class=icon-trash></i>"), user_glossary_path(current_user, user_glossary), method: :delete, :class => 'btn btn-mini'
 
   %h2
