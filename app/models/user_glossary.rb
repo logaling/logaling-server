@@ -17,6 +17,9 @@ class UserGlossary < ActiveRecord::Base
 
   validates_presence_of :name, :source_language, :target_language
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
+  validate :original_user_glossary_id_must_exist,
+    if: "original_user_glossary_id.present?",
+    on: :create
 
   after_create :create_personal_project!
   after_destroy :remove_personal_project!
@@ -89,7 +92,19 @@ class UserGlossary < ActiveRecord::Base
     terms = glossary.terms(annotation).map { |term_attrs| GlossaryEntry.new(term_attrs) }
   end
 
+  def set_original_user_glossary_id(user_glossary_id)
+    if UserGlossary.find_by_id(user_glossary_id).present?
+      @original_user_glossary_id = user_glossary_id
+    end
+  end
+
   private
+  def original_user_glossary_id_must_exist
+    unless UserGlossary.find_by_id(@original_user_glossary_id).present?
+      errors.add :original_user_glossary_id, "の指定が正しくありません"
+    end
+  end
+
   def find_glossary
     LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
   end
