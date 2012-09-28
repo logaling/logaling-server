@@ -51,6 +51,7 @@ OmniAuth.config.test_mode = true
 
 Before do
   LogalingServer.flush_data_directory!
+  LogalingServer.repository.index
 end
 
 # Possible values are :truncation and :transaction
