@@ -15,7 +15,7 @@ class UserGlossary < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :name, :source_language, :target_language
+  validates_presence_of :name, :source_language, :target_language, :user_id
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
   validate :original_user_glossary_id_must_exist,
     if: "original_user_glossary_id.present?",
