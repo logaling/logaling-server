@@ -10,6 +10,7 @@ class UserGlossary < ActiveRecord::Base
   end
 
   attr_accessor :original_user_glossary_id
+
   attr_accessible :name, :source_language, :target_language, :original_user_glossary_id
 
   belongs_to :user
