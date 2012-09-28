@@ -14,6 +14,9 @@ class UserGlossariesController < ApplicationController
   # GET /user_glossaries/new
   def new
     @user_glossary = UserGlossary.new
+    if params[:original_user_glossary_id].present?
+      @user_glossary.original_user_glossary_id = params[:original_user_glossary_id]
+    end
   end
 
   # POST /user_glossaries
