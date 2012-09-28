@@ -9,12 +9,17 @@ class UserGlossary < ActiveRecord::Base
     end
   end
 
-  attr_accessible :name, :source_language, :target_language
+  attr_accessor :original_user_glossary_id
+
+  attr_accessible :name, :source_language, :target_language, :original_user_glossary_id
 
   belongs_to :user
 
-  validates_presence_of :name, :source_language, :target_language
+  validates_presence_of :name, :source_language, :target_language, :user_id
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
+  validate :original_user_glossary_id_must_exist,
+    if: "original_user_glossary_id.present?",
+    on: :create
 
   after_create :create_personal_project!
   after_destroy :remove_personal_project!
@@ -38,7 +43,7 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.add(term.source_term, term.target_term, term.note)
-    LogalingServer.repository.index
+    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:source_term, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'")
@@ -53,7 +58,7 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.update(term.source_term, term.target_term, new_term.target_term, new_term.note)
-    LogalingServer.repository.index
+    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:target_term, "term '#{term.source_term}: #{new_term.target_term}' already exists in '#{name}'")
@@ -67,7 +72,7 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.delete(term.source_term, term.target_term)
-    LogalingServer.repository.index
+    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:target_term, "term '#{term.source_term}: #{term.target_term}' doesn't exists in '#{name}'")
@@ -87,14 +92,35 @@ class UserGlossary < ActiveRecord::Base
     terms = glossary.terms(annotation).map { |term_attrs| GlossaryEntry.new(term_attrs) }
   end
 
-  private
+  def set_original_user_glossary_id(user_glossary_id)
+    if UserGlossary.find_by_id(user_glossary_id).present?
+      @original_user_glossary_id = user_glossary_id
+    end
+  end
+
   def find_glossary
     LogalingServer.repository.find_glossary(glossary_name, source_language, target_language)
   end
 
+  private
+  def original_user_glossary_id_must_exist
+    unless UserGlossary.find_by_id(@original_user_glossary_id).present?
+      errors.add :original_user_glossary_id, "の指定が正しくありません"
+    end
+  end
+
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
-    LogalingServer.repository.index
+    copy_from_original_user_glossary!
+  end
+
+  def copy_from_original_user_glossary!
+    if original_user_glossary_id.present?
+      src_glossary = UserGlossary.find(original_user_glossary_id).find_glossary
+      dest_glossary = find_glossary
+      dest_glossary.merge!(src_glossary)
+      dest_glossary.index!
+    end
   end
 
   def remove_personal_project!
