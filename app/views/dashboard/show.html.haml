@@ -34,8 +34,7 @@
       %li
         = github_project.full_name
         %span.btn-group.actions
-          %a.btn.btn-mini{ :href => '#', :title => '削除する' }
-            %i.icon-trash
+          = link_to raw("<i class=icon-trash></i>"), user_github_project_membership_path(current_user, github_project.memberships.of(current_user).first), method: :delete, :class => 'btn btn-mini'
         %ul.glossariesList
           - github_project.glossaries.each_with_index do |glossary, i|
             %li
