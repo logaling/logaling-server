@@ -2,7 +2,6 @@
 class UserGlossariesController < ApplicationController
   before_filter :authenticate!, :except => :show
   before_filter :valid_user?, :only => [:new, :create]
-  before_filter :set_my_glossaries, :only => [:new, :create]
 
   # GET /user_glossaries/1
   def show
@@ -37,10 +36,5 @@ class UserGlossariesController < ApplicationController
     redirect_to dashboard_path, notice: e.to_s
   rescue ActiveRecord::RecordNotFound
     render :file => 'public/404.html', :status => 404, :layout => false
-  end
-
-  private
-  def set_my_glossaries
-    @my_glossaries = signed_in? ? current_user.user_glossaries : []
   end
 end
