@@ -9,7 +9,8 @@ class UserGlossary < ActiveRecord::Base
     end
   end
 
-  attr_accessible :name, :source_language, :target_language
+  attr_accessor :original_user_glossary_id
+  attr_accessible :name, :source_language, :target_language, :original_user_glossary_id
 
   belongs_to :user
 
@@ -93,7 +94,13 @@ class UserGlossary < ActiveRecord::Base
   end
 
   def create_personal_project!
-    LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
+    dest_project = LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
+    if original_user_glossary_id.present?
+      src_user_glossary = UserGlossary.find(original_user_glossary_id)
+      src_glossary = LogalingServer.repository.find_glossary(src_user_glossary.glossary_name, src_user_glossary.source_language, src_user_glossary.target_language)
+      dest_glossary = dest_project.glossary(source_language, target_language)
+      dest_glossary.merge!(src_glossary)
+    end
     LogalingServer.repository.index
   end
 

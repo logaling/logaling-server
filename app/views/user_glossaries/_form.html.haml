@@ -6,6 +6,11 @@
         - @user_glossary.errors.full_messages.each do |msg|
           %li= msg
 
+  - if signed_in? && !@my_glossaries.empty?
+    .control-group
+      = f.label :original_user_glossary_id, :class => 'control-label'
+      .controls
+        = f.collection_select :original_user_glossary_id, @my_glossaries, :id, :name, :prompt => true
   .control-group
     = f.label :name, :class => 'control-label required'
     .controls
