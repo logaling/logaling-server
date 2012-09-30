@@ -9,6 +9,11 @@ module AdditionalInformationAsSearchResults
     glossary_name =~ /^github/
   end
 
+  def user_glossary?
+    user_id = split_glossary_name_to_user_id_and_name[0]
+    user_id =~ /\d{5}/
+  end
+
   def split_glossary_name_to_user_id_and_name
     glossary_name.split("-", 2)
   end

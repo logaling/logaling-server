@@ -15,7 +15,7 @@
       - if term.github_project?
         %p.githubProject
           = link_to term.glossary_name_without_github, '#'
-      - else
+      - elsif term.user_glossary?
         %p.logalingProject
           = link_to term.glossary_name, '#'
           - if signed_in?
@@ -24,4 +24,7 @@
               %p.btn-group.actions
                 = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, user_glossary, term.id), :class => 'btn btn-mini'
                 = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
-
+      - else
+        %p
+          %i.icon-folder-open
+          = term.glossary_name
