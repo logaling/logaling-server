@@ -5,6 +5,10 @@ module AdditionalInformationAsSearchResults
   attr_accessor :target_language
   attr_accessor :snipped_source_term
 
+  def github_project?
+    glossary_name =~ /^github/
+  end
+
   def split_glossary_name_to_user_id_and_name
     glossary_name.split("-", 2)
   end

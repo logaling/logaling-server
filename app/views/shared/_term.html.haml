@@ -12,7 +12,7 @@
           = "note"
         = term.note
     .span2.property
-      - if github_project?(term.glossary_name)
+      - if term.github_project?
         %p.githubProject
           = link_to term.glossary_name_without_github, '#'
       - else
