@@ -7,6 +7,9 @@ language: ruby
 rvm:
   - 1.9.3
 bundler_args: "--without development:production"
-before_script: "RAILS_ENV=test bundle exec rake db:create db:migrate --trace"
+before_script:
+  - cp config/database.yml.example config/database.yml
+  - export RAILS_ENV=test
+  - bundle exec rake db:create db:migrate --trace
 before_install:
   - curl https://raw.github.com/groonga/groonga/master/data/travis/setup.sh | sh

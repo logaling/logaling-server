@@ -44,7 +44,7 @@ test:
   encoding: unicode
   database: logaling_server_test
   pool: 5
-  username: logaling
+  username: postgres
   password:
   min_messages: WARNING
 
