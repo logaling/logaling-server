@@ -180,6 +180,7 @@ GEM
     omniauth-twitter (0.0.11)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
+    pg (0.14.1)
     pkg-config (1.1.4)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -240,7 +241,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.6)
     term-ansicolor (1.0.7)
     therubyracer (0.10.2)
       libv8 (~> 3.3.10)
@@ -287,9 +287,9 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   omniauth-twitter
+  pg
   rails (= 3.2.8)
   rspec-rails
   sass-rails (~> 3.2.3)
-  sqlite3
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
