@@ -52,6 +52,7 @@ gem 'logaling-command', :git => 'git://github.com/logaling/logaling-command.git'
 group :development do
   gem 'i18n_generators'
   gem 'foreman'
+  gem 'rails-footnotes'
   gem 'capistrano', :require => nil
   gem 'capistrano-ext', :require => nil
 end
