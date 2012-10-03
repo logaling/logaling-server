@@ -13,15 +13,19 @@
   .control-group
     = f.label :name, :class => 'control-label required'
     .controls
-      = f.text_field :name
+      = f.text_field :name, :placeholder => 'my_glossary'
   .control-group
     = f.label :source_language, :class => 'control-label required'
     .controls
-      = f.text_field :source_language
+      = f.text_field :source_language, :class => 'input-mini', :placeholder => 'en'
   .control-group
     = f.label :target_language, :class => 'control-label required'
     .controls
-      = f.text_field :target_language
+      = f.text_field :target_language, :class => 'input-mini', :placeholder => 'ja'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_field :description, :class => 'input-xxlarge', :placeholder => '私の個人的な用語集'
 
   .control-group
     .controls

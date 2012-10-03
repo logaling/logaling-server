@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924072013) do
+ActiveRecord::Schema.define(:version => 20121003071506) do
 
   create_table "github_projects", :force => true do |t|
     t.string   "owner"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120924072013) do
     t.string   "target_language", :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "description"
   end
 
   add_index "user_glossaries", ["user_id"], :name => "index_user_glossaries_on_user_id"
