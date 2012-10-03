@@ -13,13 +13,13 @@
       %li
         = link_to user_glossary.link_text, user_glossary_path(current_user, user_glossary)
         %span.btn-group.actions
-          = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => { :class => "btn btn-mini" } do |f|
-            = f.hidden_field :glossary_name, value: user_glossary.glossary_name
-            = f.hidden_field :source_language, value: user_glossary.source_language
-            = f.hidden_field :target_language, value: user_glossary.target_language
-            %label{ :for => "commit_#{user_glossary.id}" }
-              %i{ :class => 'icon-star' }
-            = f.submit '', :class => 'hidden', :id => "commit_#{user_glossary.id}"
+          %label{ :for => "commit_#{user_glossary.id}", :class => "btn btn-mini" }
+            %i{ :class => 'icon-star' }
+            = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => {:style => "margin:0;"} do |f|
+              = f.hidden_field :glossary_name, value: user_glossary.glossary_name
+              = f.hidden_field :source_language, value: user_glossary.source_language
+              = f.hidden_field :target_language, value: user_glossary.target_language
+              = f.submit '', :class => 'hidden', :id => "commit_#{user_glossary.id}"
           = link_to raw("<i class=icon-file></i>"), new_user_glossary_path(current_user, original_user_glossary_id: user_glossary.id), { :class => 'btn btn-mini' }
           = link_to raw("<i class=icon-trash></i>"), user_glossary_path(current_user, user_glossary), method: :delete, :class => 'btn btn-mini'
 
@@ -41,10 +41,10 @@
               - bilingual_pair = [glossary.source_language, glossary.target_language].join('-')
               = link_to "#{glossary.source_language} #{glossary.target_language}", github_project_glossary_path(:id => bilingual_pair, :github_project_id => github_project)
               %span.btn-group.actions
-                = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => { :class => "btn btn-mini" } do |f|
-                  = f.hidden_field :glossary_name, value: glossary.name
-                  = f.hidden_field :source_language, value: glossary.source_language
-                  = f.hidden_field :target_language, value: glossary.target_language
-                  %label{ :for => "commit_github_project_glossary_#{i}" }
-                    %i{ :class => 'icon-star' }
-                  = f.submit '', :class => 'hidden', :id => "commit_github_project_glossary_#{i}"
+                %label{ :for => "commit_github_project_glossary_#{i}", :class => "btn btn-mini" }
+                  %i{ :class => 'icon-star' }
+              = form_for @user_config, url: @user_config.submit_path_for(current_user), :html => { :style => "margin:0;" } do |f|
+                = f.hidden_field :glossary_name, value: glossary.name
+                = f.hidden_field :source_language, value: glossary.source_language
+                = f.hidden_field :target_language, value: glossary.target_language
+                = f.submit '', :class => 'hidden', :id => "commit_github_project_glossary_#{i}"
