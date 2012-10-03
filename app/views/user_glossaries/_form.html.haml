@@ -9,7 +9,7 @@
   .control-group
     = f.label :original_user_glossary_id, :class => 'control-label'
     .controls
-      = f.collection_select :original_user_glossary_id, UserGlossary.where(user_id: current_user), :id, :name, :prompt => true
+      = f.collection_select :original_user_glossary_id, UserGlossary.where(user_id: current_user), :id, :name, include_blank: "選択してください"
   .control-group
     = f.label :name, :class => 'control-label required'
     .controls
