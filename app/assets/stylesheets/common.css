@@ -148,7 +148,7 @@ body > .container > h3 {
     background: -moz-linear-gradient(top, #ca3b43, #953137); }
 
 .projectsList ul {
-  margin: 20px 10px; }
+  margin: 20px 0; }
 .projectsList li {
   list-style: none;
   padding-left: 26px;
