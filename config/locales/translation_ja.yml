@@ -13,6 +13,7 @@ ja:
         source_language: 元言語
         target_language: 翻訳言語
         original_user_glossary_id: コピー元の用語集
+        description: 用語集の説明
 
   activemodel:
     attributes:
