@@ -6,17 +6,17 @@ module GitBackended
   def checkout!
     if cloned?
       Dir.chdir(repository_path) do
-        unless system "git", "reset", "--hard"
+        unless system "git", "reset", "--hard", "--quiet"
           raise "reset failed"
         end
-        unless system "git", "pull", "--force", "origin", branch
+        unless system "git", "pull", "--force", "--quiet", "origin", branch
           raise "pull failed"
         end
       end
     else
       FileUtils.mkdir_p(repository_path)
       Dir.chdir(repository_path) do
-        unless system "git", "clone", remote_repository_url, repository_path
+        unless system "git", "clone", "--quiet", remote_repository_url, repository_path
           raise "clone failed"
         end
       end
