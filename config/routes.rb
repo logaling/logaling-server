@@ -12,7 +12,7 @@ LogalingServer::Application.routes.draw do
               :only => :show
   end
 
-  resources :users, :only => [] do
+  resources :users, :only => [:create] do
     resources :github_project_memberships,
       :only => [:new, :create, :destroy]
     resources :user_glossaries,
@@ -28,6 +28,7 @@ LogalingServer::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'
+  match '/signup' => 'users#new', as: :signup
   match '/signin' => 'sessions#new', as: :signin
   match "/signout" => "sessions#destroy", :as => :signout
   match "/dashboard" => "dashboard#show", :as => :dashboard

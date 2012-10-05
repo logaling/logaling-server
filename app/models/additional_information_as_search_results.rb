@@ -26,6 +26,11 @@ module AdditionalInformationAsSearchResults
   def glossary_name_without_user_id
     split_glossary_name_to_user_id_and_name[1]
   end
-
   alias_method :glossary_name_without_github, :glossary_name_without_user_id
+
+  def decorated_glossary_name
+    user_id, glossary_name = split_glossary_name_to_user_id_and_name
+    name = User.where(id: user_id.to_i).first.name
+    "#{name}-#{glossary_name}"
+  end
 end

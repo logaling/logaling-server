@@ -3,8 +3,11 @@ ja:
     models:
       github_project: Githubプロジェクト
       user_glossary: 用語集
+      user: アカウント
 
     attributes:
+      user:
+        name: ユーザ名
       github_project:
         owner: ユーザ
         name: プロジェクト
