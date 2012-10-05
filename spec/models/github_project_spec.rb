@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe GithubProject do
   before do
-    subject.stub!(:remote_repository_url)
-           .and_return(File.join(Rails.root, '.git'))
+    # FIXME: Because fail 'git clone' on travis, so this line is commentted out.
+    #  see:
+    #  http://stackoverflow.com/questions/4770532/error-when-cloning-git-shallow-repository
+    #subject.stub!(:remote_repository_url)
+    #       .and_return(File.join(Rails.root, '.git'))
   end
 
   describe 'using logaling' do
