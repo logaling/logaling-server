@@ -17,7 +17,7 @@
           = link_to term.glossary_name_without_github, '#'
       - elsif term.user_glossary?
         %p.logalingProject
-          = link_to term.glossary_name, '#'
+          = link_to term.decorated_glossary_name, '#'
           - if signed_in?
             - user_glossary = UserGlossary.find_by_term_and_user(term, current_user)
             - if user_glossary

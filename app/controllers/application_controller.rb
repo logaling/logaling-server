@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def sign_in(user)
+    session[:user_id] = user.id
+  end
+
+  def sign_out
+    session[:user_id] = nil
+  end
+
   def authenticate!
     unless signed_in?
       redirect_to root_path
@@ -21,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_user?
-    if current_user.id != params[:user_id].to_i
+    if current_user.name != params[:user_id]
       redirect_to dashboard_path, notice: "不正なアクセスです"
     end
   end

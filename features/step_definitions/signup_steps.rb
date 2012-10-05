@@ -2,8 +2,9 @@
 
 前提 /^ユーザ"([^"]*)"でログインしている$/ do |name|
   page.reset_session!
-  OmniAuth.config.add_mock(:github, uid: SecureRandom.hex(8), info: {name: name})
-  user = Fabricate(:user, name: name, provider: 'github')
+  uid = SecureRandom.hex(8)
+  OmniAuth.config.add_mock(:github, uid: uid, info: {name: name})
+  user = Fabricate(:user, name: name, provider: 'github', uid: uid)
   visit '/auth/github'
 end
 
