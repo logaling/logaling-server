@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def valid_user?
-    if current_user.id != params[:user_id].to_i
+    if current_user.name != params[:user_id]
       redirect_to dashboard_path, notice: "不正なアクセスです"
     end
   end
