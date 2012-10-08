@@ -20,6 +20,15 @@ module Project
     LogalingServer.repository.index
   end
 
+  def registered_project
+    LogalingServer.repository.find_project(logaling_name)
+  end
+
+  def unregister!
+    LogalingServer.repository.unregister(registered_project)
+    LogalingServer.repository.index
+  end
+
   def sync!
     checkout!
     unless with_logaling?
@@ -29,7 +38,7 @@ module Project
   end
 
   def remove_repository!
-    LogalingServer.repository.unregister(logaling_name)
+    unregister!
     FileUtils.rm_rf(repository_path)
   end
 end

@@ -50,10 +50,6 @@ class GithubProject < ActiveRecord::Base
   end
 
   private
-  def registered_project
-    LogalingServer.repository.find_project(logaling_name)
-  end
-
   def project_has_dot_logaling
     unless with_logaling?
       errors.add :name, "には対訳用語集が存在しません"
