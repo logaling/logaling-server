@@ -17,9 +17,11 @@ LogalingServer::Application.routes.draw do
       :only => [:new, :create, :destroy]
     resources :user_glossaries,
       :path => 'glossaries',
+      :constraints => {:id => %r{[^/]+/[^/]+}},
       :only => [:new, :create, :show, :destroy],
       :as => :glossaries do
-        resources :terms
+        resources :terms,
+          :constraints => {:id => %r{[^/]+}, :glossary_id => %r{[^/]+/[^/]+}}
     end
     resources :user_configs,
       :path => 'configs',

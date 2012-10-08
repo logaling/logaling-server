@@ -1,7 +1,7 @@
 - @title = "#{@user_glossary.title_text} の用語一覧"
 .container
   %h1
-    = @user_glossary.title_text
+    = "#{@user.name} / #{@user_glossary.title_text}"
   %p
     = @user_glossary.description
   %h2
