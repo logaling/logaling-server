@@ -22,6 +22,10 @@
     = f.label :target_language, :class => 'control-label required'
     .controls
       = f.text_field :target_language, :class => 'input-mini', :placeholder => 'ja'
+      %span.help-block
+        元言語と翻訳言語には
+        = link_to 'ISO 639', 'http://ja.wikipedia.org/wiki/ISO_639'
+        で規定されている言語の名称の略号2文字（ja や en など）を入力してください
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
