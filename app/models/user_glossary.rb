@@ -22,7 +22,7 @@ class UserGlossary < ActiveRecord::Base
     on: :create
 
   validates_each :source_language, :target_language do |record, attr, value|
-    unless ISO_639.find_by_code(value)
+    if value.size != 2 || !ISO_639.find_by_code(value)
       record.errors.add attr, 'には言語名コードを指定して下さい'
     end
   end
