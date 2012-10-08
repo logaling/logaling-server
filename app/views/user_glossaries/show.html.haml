@@ -1,13 +1,14 @@
 - @title = "#{@user_glossary.title_text} の用語一覧"
 .container
   %h1
-    = @user_glossary.title_text
+    = "#{@user.name} / #{@user_glossary.title_text}"
   %p
     = @user_glossary.description
-  %h2
-    用語を登録
-  .well
-    = render 'terms/form'
+  - if signed_in? && current_user.own?(@user_glossary)
+    %h2
+      用語を登録
+    .well
+      = render 'terms/form'
   %h2
     登録されてる用語一覧
   - @registered_terms.each do |term|
@@ -26,7 +27,8 @@
         .span2.property
           %p.logalingProject
             = @user_glossary.link_text
-          %p.btn-group.actions
-            = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini'
-            = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
+          - if signed_in? && current_user.own?(@user_glossary)
+            %p.btn-group.actions
+              = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini'
+              = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini'
   = paginate @registered_terms
