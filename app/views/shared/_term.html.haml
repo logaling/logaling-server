@@ -14,10 +14,10 @@
     .span2.property
       - if term.github_project?
         %p.githubProject
-          = link_to term.glossary_name_without_github, '#'
+          = link_to_glossary_with(term)
       - elsif term.user_glossary?
         %p.logalingProject
-          = link_to term.decorated_glossary_name, '#'
+          = link_to_glossary_with(term)
           - if signed_in?
             - user_glossary = UserGlossary.find_by_term_and_user(term, current_user)
             - if user_glossary
