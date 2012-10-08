@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def priority_glossary
     user_config ? user_config.glossary : nil
   end
+
+  def own?(user_glossary)
+    user_glossaries.include?(user_glossary)
+  end
 end
