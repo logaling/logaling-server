@@ -33,7 +33,8 @@ class UserGlossariesController < ApplicationController
 
   # DELETE /user_glossaries/1
   def destroy
-    @user_glossary = UserGlossary.find(params[:id])
+    user = User.find_by_name(params[:user_id])
+    @user_glossary = UserGlossary.of(params[:id], user)
     @user_glossary.destroy
     redirect_to dashboard_path, notice: 'User glossary was successfully destroyed.'
   rescue Logaling::CommandFailed, Logaling::GlossaryNotFound => e

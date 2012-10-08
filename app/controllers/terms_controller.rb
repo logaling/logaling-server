@@ -1,5 +1,6 @@
 #coding: utf-8
 class TermsController < ApplicationController
+  before_filter :authenticate!
   before_filter :set_user_glossary
 
   def new
@@ -40,7 +41,7 @@ class TermsController < ApplicationController
 
   private
   def set_user_glossary
-    @user_glossary = UserGlossary.find(params[:glossary_id])
+    @user_glossary = UserGlossary.of(params[:glossary_id], current_user)
   rescue ActiveRecord::RecordNotFound
     render :file => 'public/404.html', :status => 404, :layout => false
   end
