@@ -9,11 +9,15 @@
   -# TODO should be just one text field
   .control-group
     .control-label
-      http://github.com/
+      プロジェクト
     .controls
-      = f.text_field :owner
-      \/
-      = f.text_field :name
+      .input-prepend.input-append
+        %span.add-on
+          http://github.com/
+        = f.text_field :owner, placeholder: 'Owner'
+        %span.add-on
+          \/
+        = f.text_field :name, placeholder: 'Repository name'
 
   .control-group
     .controls

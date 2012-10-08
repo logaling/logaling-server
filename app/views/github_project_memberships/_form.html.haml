@@ -8,12 +8,16 @@
 
   .control-group
     .control-label
-      http://github.com/
+      プロジェクト
     .controls
-      = f.text_field :project_owner#, :class => 'conrols'
-      \/
-      = f.text_field :project_name
-      = f.hidden_field :user_id, value: current_user.id
+      .input-prepend.input-append
+        %span.add-on
+          http://github.com/
+        = f.text_field :project_owner, placeholder: 'Owner'
+        %span.add-on
+          \/
+        = f.text_field :project_name, placeholder: 'Repository name'
+        = f.hidden_field :user_id, value: current_user.id
 
   .control-group
     .controls
