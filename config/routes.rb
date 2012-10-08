@@ -1,8 +1,6 @@
 LogalingServer::Application.routes.draw do
   get "search", :as => :search, :controller => 'search', :action => :index
 
-  get "top/index"
-
   resources :github_projects,
             :path => 'github',
             :constraints => {:id => %r{[^/]+/[^/]+}},
