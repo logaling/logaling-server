@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      sign_in(user)
+      sign_in(@user)
       session[:user_info] = nil
       redirect_to dashboard_url
     else
