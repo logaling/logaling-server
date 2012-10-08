@@ -31,6 +31,12 @@ class UserGlossary < ActiveRecord::Base
     if: "original_user_glossary_id.present?",
     on: :create
 
+  validates_each :source_language, :target_language do |record, attr, value|
+    if value.size != 2 || !ISO_639.find_by_code(value)
+      record.errors.add attr, 'には言語名コードを指定して下さい'
+    end
+  end
+
   after_create :create_personal_project!
   after_destroy :remove_personal_project!
 

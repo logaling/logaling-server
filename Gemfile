@@ -32,6 +32,7 @@ gem 'active_decorator'
 gem 'omniauth-twitter'
 gem 'kaminari'
 gem 'rvm-capistrano'
+gem 'iso-639'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -113,6 +113,7 @@ GEM
     i18n_generators (1.1.0)
       mechanize
     io-like (0.3.0)
+    iso-639 (0.0.3)
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   foreman
   haml-rails
   i18n_generators
+  iso-639
   jquery-rails
   kaminari
   logaling-command!
