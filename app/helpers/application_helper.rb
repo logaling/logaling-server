@@ -21,9 +21,9 @@ module ApplicationHelper
 
   def link_to_glossary_with(term)
     if term.github_project?
-      github_project_id = term.glossary_name_without_github.sub('-', '/')
+      github_project_id = term.glossary_name_without_github.sub(':', '/')
       bilingual_pair = [term.source_language, term.target_language].join('-')
-      link_to(term.glossary_name_without_github, github_project_glossary_path(id: bilingual_pair, github_project_id: github_project_id))
+      link_to(term.decorated_glossary_name, github_project_glossary_path(id: bilingual_pair, github_project_id: github_project_id))
     elsif term.user_glossary?
       owner = User.find(term.split_glossary_name_to_user_id_and_name[0])
       user_glossary = UserGlossary.find_by_term_and_user(term, owner)
