@@ -38,7 +38,7 @@ class GithubProject < ActiveRecord::Base
 
   # project name for logaling
   def logaling_name
-    "github-%s-%s" % [owner, name]
+    "github-%s:%s" % [owner, name]
   end
 
   def glossaries
