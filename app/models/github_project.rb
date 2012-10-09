@@ -8,9 +8,10 @@ class GithubProject < ActiveRecord::Base
 
   validates_uniqueness_of :name, :scope => :owner
   validates_format_of :owner, :name, :with => /\A[0-9a-z\-_]+\z/
+  validate :project_checked_out, on: :create
   validate :project_has_dot_logaling, on: :create
 
-  before_validation :checkout!, on: :create
+  before_validation :checkout_repository, on: :create
   after_create :register!
 
   class << self
@@ -50,6 +51,21 @@ class GithubProject < ActiveRecord::Base
   end
 
   private
+  def checkout_repository
+    @checked_out = false
+    checkout!
+    @checked_out = true
+  rescue => e
+    logger.debug e
+    true
+  end
+
+  def project_checked_out
+    unless @checked_out
+      errors.add :name, "は存在していないか入力に誤りがあります"
+    end
+  end
+
   def project_has_dot_logaling
     unless with_logaling?
       errors.add :name, "には対訳用語集が存在しません"
