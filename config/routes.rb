@@ -1,7 +1,7 @@
 LogalingServer::Application.routes.draw do
   get "search", :as => :search, :controller => 'search', :action => :index
 
-  get "top/index"
+  get "lisence", to: 'pages#lisence', as: :lisence
 
   resources :github_projects,
             :path => 'github',

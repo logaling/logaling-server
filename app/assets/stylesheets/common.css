@@ -267,9 +267,14 @@ body > footer {
   background: #e8f0ed;
   margin-top: 20px; }
   body > footer nav {
+    float: left;
     margin-top: 10px;
     width: 200px;
     display: inline-block; }
+
+.lisence {
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 .copyright {
   text-align: right; }
