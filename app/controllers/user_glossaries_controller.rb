@@ -7,7 +7,7 @@ class UserGlossariesController < ApplicationController
   def show
     @user = User.find_by_name(params[:user_id])
     @term = GlossaryEntry.new
-    @user_glossary = UserGlossary.of(params[:id], @user)
+    @user_glossary = @user.find_glossary(params[:id])
     @registered_terms = Kaminari.paginate_array(@user_glossary.terms).page(params[:page])
   rescue ActiveRecord::RecordNotFound
     render :file => 'public/404.html', :status => 404, :layout => false
@@ -34,7 +34,7 @@ class UserGlossariesController < ApplicationController
   # DELETE /user_glossaries/1
   def destroy
     user = User.find_by_name(params[:user_id])
-    @user_glossary = UserGlossary.of(params[:id], user)
+    @user_glossary = user.find_glossary(params[:id])
     @user_glossary.destroy
     redirect_to dashboard_path, notice: 'User glossary was successfully destroyed.'
   rescue Logaling::CommandFailed, Logaling::GlossaryNotFound => e

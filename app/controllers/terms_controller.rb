@@ -41,7 +41,7 @@ class TermsController < ApplicationController
 
   private
   def set_user_glossary
-    @user_glossary = UserGlossary.of(params[:glossary_id], current_user)
+    @user_glossary = current_user.find_glossary(params[:glossary_id])
   rescue ActiveRecord::RecordNotFound
     render :file => 'public/404.html', :status => 404, :layout => false
   end

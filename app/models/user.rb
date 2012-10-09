@@ -33,4 +33,14 @@ class User < ActiveRecord::Base
   def own?(user_glossary)
     user_glossaries.include?(user_glossary)
   end
+
+  def find_glossary(glossary_id)
+    name, bilingualr_pair = glossary_id.split('/', 2)
+    source_language, target_language = bilingualr_pair.split('-', 2)
+    glossary = user_glossaries.with_name(name).of_bilingualr_pair(source_language, target_language).first
+    unless glossary
+      raise ActiveRecord::RecordNotFound
+    end
+    glossary
+  end
 end

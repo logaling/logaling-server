@@ -1,16 +1,6 @@
 #coding: utf-8
 class UserGlossary < ActiveRecord::Base
   class << self
-    def of(id, user)
-      name, bilingualr_pair = id.split('/', 2)
-      source_language, target_language = bilingualr_pair.split('-', 2)
-      glossary = self.with_name(name).of_bilingualr_pair(source_language, target_language).where(user_id: user).first
-      unless glossary
-        raise ActiveRecord::RecordNotFound
-      end
-      glossary
-    end
-
     def find_by_term_and_user(term, user)
       return nil unless term.owner?(user)
       user.user_glossaries.with_name(term.glossary_name_without_user_id)
