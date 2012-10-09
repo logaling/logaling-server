@@ -39,7 +39,7 @@ class GithubProject < ActiveRecord::Base
 
   # project name for logaling
   def logaling_name
-    "github-%s-%s" % [owner, name]
+    "github-%s:%s" % [owner, name]
   end
 
   def glossaries
@@ -51,10 +51,6 @@ class GithubProject < ActiveRecord::Base
   end
 
   private
-  def registered_project
-    LogalingServer.repository.find_project(logaling_name)
-  end
-
   def checkout_repository
     @checked_out = false
     checkout!

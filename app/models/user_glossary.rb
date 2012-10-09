@@ -131,16 +131,17 @@ class UserGlossary < ActiveRecord::Base
 
   def create_personal_project!
     LogalingServer.repository.create_personal_project(glossary_name, source_language, target_language)
-    copy_from_original_user_glossary!
+    glossary = copy_from_original_user_glossary!
+    glossary.index!
   end
 
   def copy_from_original_user_glossary!
+    dest_glossary = find_glossary
     if original_user_glossary_id.present?
       src_glossary = UserGlossary.find(original_user_glossary_id).find_glossary
-      dest_glossary = find_glossary
       dest_glossary.merge!(src_glossary)
-      dest_glossary.index!
     end
+    dest_glossary
   end
 
   def remove_personal_project!
