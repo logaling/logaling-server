@@ -17,9 +17,14 @@ class UserGlossary < ActiveRecord::Base
 
   validates_presence_of :name, :source_language, :target_language, :user_id
   validates_uniqueness_of :name, scope: [:user_id, :source_language, :target_language]
+
   validate :original_user_glossary_id_must_exist,
     if: "original_user_glossary_id.present?",
     on: :create
+
+  validates_format_of :name,
+    with: /\A[\w\d_-]*\z/,
+    message: 'に使用できるのは半角英数字と_(アンダースコア)と-(ハイフン)です'
 
   validates_each :source_language, :target_language do |record, attr, value|
     if value.size != 2 || !ISO_639.find_by_code(value)
