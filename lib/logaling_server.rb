@@ -5,7 +5,7 @@ module LogalingServer
       unless Rails.env.production?
         File.join(Rails.root, "data.#{Rails.env}")
       else
-        File.join(Rails.root, "..", "..", "shared", "data", "data.#{Rails.env}")
+        File.join(".", "..", "..", "shared", "data", "data.#{Rails.env}")
       end
     end
 
