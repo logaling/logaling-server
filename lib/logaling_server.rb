@@ -1,7 +1,12 @@
 module LogalingServer
   class << self
     def data_directory
-      File.join(Rails.root, "data.#{Rails.env}")
+      #FIXME: need logaling-command's glossary source path problem
+      unless Rails.env.production?
+        File.join(Rails.root, "data.#{Rails.env}")
+      else
+        File.join(Rails.root, "..", "..", "shared", "data", "data.#{Rails.env}")
+      end
     end
 
     def repository_base
