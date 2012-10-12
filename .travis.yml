@@ -9,6 +9,7 @@ rvm:
 bundler_args: "--without development:production"
 before_script:
   - cp config/database.yml.example config/database.yml
+  - cp .env.sample .env
   - export RAILS_ENV=test
   - bundle exec rake db:create db:migrate --trace
 before_install:
