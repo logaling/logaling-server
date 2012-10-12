@@ -1,4 +1,7 @@
 class GithubProjectMembershipsController < ApplicationController
+  before_filter :authenticate!, :except => :show
+  before_filter :valid_user?, :except => :show
+
   def new
     @github_project_membership = GithubProjectMembership.new
   end
