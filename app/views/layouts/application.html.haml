@@ -4,6 +4,10 @@
     %meta{:charset => "utf-8"}/
     %title= ['logalingけんさく', @title].flatten.compact.join(' | ')
     %meta{:name => 'viewport', :content => 'width=device-width'}
+    %meta{:property => "og:site_name", :content => "logalingけんさく"}
+    %meta{:property => "og:title", :content => "#{['logalingけんさく', @title].flatten.compact.join(' | ')}"}
+    %meta{:property => "og:url", :content => "#{ENV['BASE_URL']+request.path_info}"}
+    %meta{:property => "og:image", :content => "#{ENV['BASE_URL']+image_path('commonLogo.png')}"}
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
