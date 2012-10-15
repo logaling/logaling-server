@@ -1,7 +1,9 @@
 LogalingServer::Application.routes.draw do
   get "search", :as => :search, :controller => 'search', :action => :index
 
-  get "lisence", to: 'pages#lisence', as: :lisence
+  %w(lisence about).each do |page_name|
+    get page_name, to: "pages##{page_name}", as: page_name
+  end
 
   resources :github_projects,
             :path => 'github',
