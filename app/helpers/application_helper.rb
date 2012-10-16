@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def base_url
+    if Rails.env.production?
+      ENV['BASE_URL']
+    else
+      "http://#{request.host_with_port}"
+    end
+  end
+
   def render_sinpped(snipped, tag=:strong)
     buffer = ""
     snipped.each do |component|
