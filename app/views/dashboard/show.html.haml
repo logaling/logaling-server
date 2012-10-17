@@ -20,8 +20,8 @@
               = f.hidden_field :source_language, value: user_glossary.source_language
               = f.hidden_field :target_language, value: user_glossary.target_language
               = f.submit '', :class => 'hidden', :id => "commit_#{user_glossary.id}"
-          = link_to raw("<i class=icon-file></i>"), new_user_glossary_path(current_user, original_user_glossary_id: user_glossary.id), { :class => 'btn btn-mini' }
-          = link_to raw("<i class=icon-trash></i>"), user_glossary_path(current_user, user_glossary), method: :delete, :class => 'btn btn-mini', data: { confirm: '用語集を削除します。よろしいですか?' }
+          = link_to raw("<i class=icon-file></i>"), new_user_glossary_path(current_user, original_user_glossary_id: user_glossary.id), { :class => 'btn btn-mini', :title => 'この用語集をベースに新しい用語集を作成する' }
+          = link_to raw("<i class=icon-trash></i>"), user_glossary_path(current_user, user_glossary), method: :delete, :class => 'btn btn-mini', :title => '用語集を削除する', data: { confirm: '用語集を削除します。よろしいですか?' }
 
   %h2
     参加しているGitHubプロジェクトの管理
@@ -34,7 +34,7 @@
       %li
         = github_project.full_name
         %span.btn-group.actions
-          = link_to raw("<i class=icon-trash></i>"), user_github_project_membership_path(current_user, github_project.memberships.of(current_user).first), method: :delete, :class => 'btn btn-mini', data: { confirm: '用語集を削除します。よろしいですか?' }
+          = link_to raw("<i class=icon-trash></i>"), user_github_project_membership_path(current_user, github_project.memberships.of(current_user).first), method: :delete, :class => 'btn btn-mini', :title => 'プロジェクトへの参加を取り消す', data: { confirm: 'プロジェクトへの参加を取り消します。よろしいですか?' }
         %ul.glossariesList
           - github_project.glossaries.each_with_index do |glossary, j|
             %li
