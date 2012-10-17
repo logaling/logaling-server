@@ -3,7 +3,7 @@
   %h1
     = @github_project.full_name
   %p
-    = @github_project.remote_repository_url
+    = @github_project.link_to_github
   %ul.glossariesList
     - @github_project.glossaries.each do |glossary|
       %li
