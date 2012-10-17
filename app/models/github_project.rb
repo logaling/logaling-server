@@ -37,6 +37,10 @@ class GithubProject < ActiveRecord::Base
     "git://github.com/#{owner}/#{name}"
   end
 
+  def url
+    "https://github.com/#{owner}/#{name}"
+  end
+
   # project name for logaling
   def logaling_name
     "github-%s:%s" % [owner, name]

@@ -5,7 +5,7 @@
     = @glossary.source_language
     = @glossary.target_language
   %p
-    = @github_project.remote_repository_url
+    = @github_project.link_to_github
   %h2
     登録されてる用語一覧
   - @glossary.terms.each do |term|
