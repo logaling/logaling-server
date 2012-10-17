@@ -29,6 +29,7 @@
             = @user_glossary.link_text
           - if signed_in? && current_user.own?(@user_glossary)
             %p.btn-group.actions
-              = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini'
-              = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini', data: { confirm: '用語を削除します。よろしいですか?' }
+              = link_to raw("<i class=icon-pencil></i>"), edit_user_glossary_term_path(current_user, @user_glossary, term.id), :class => 'btn btn-mini', :title => '用語を編集する'
+              = link_to raw("<i class=icon-trash></i>"), user_glossary_term_path(current_user, @user_glossary, term.id), method: :delete, :class => 'btn btn-mini', :title => '用語を削除する', data: { confirm: '用語を削除します。よろしいですか?' }
+
   = paginate @registered_terms
