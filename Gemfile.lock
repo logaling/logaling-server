@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 953d056c8c4f8c088cd1f7ab9841069008ab58c0
+  revision: 6ed24d330a2ec0aee826e2167093031b46be2565
   specs:
-    logaling-command (0.1.8)
+    logaling-command (0.1.9)
       activesupport
       bundler (>= 1.0)
       nokogiri
@@ -214,7 +214,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    rroonga (2.0.4)
+    rroonga (2.0.5)
       archive-zip
       json
       pkg-config
