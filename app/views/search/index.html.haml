@@ -2,18 +2,21 @@
 %div.container
   %h1
     = @title
-  - if @terms.present?
-    %p
-      = count_of_starting_position(@per_count, @terms.current_page)
-      \-
-      = count_of_end_position(@per_count, @terms.current_page, @terms.count)
-      件表示 /
-      = @terms.total_count
-      件中
-    - @terms.each do |term|
-      = render :partial => 'shared/term', :locals => {:term => term}
-    = paginate @terms
+  - if @query.present?
+    - if @terms.present?
+      %p
+        = count_of_starting_position(@per_count, @terms.current_page)
+        \-
+        = count_of_end_position(@per_count, @terms.current_page, @terms.count)
+        件表示 /
+        = @terms.total_count
+        件中
+      - @terms.each do |term|
+        = render :partial => 'shared/term', :locals => {:term => term}
+      = paginate @terms
+    - else
+      %p
+        = @query
+        は見つかりませんでした。
   - else
-    %p
-      = @query
-      は見つかりませんでした。
+    %p 単語/フレーズを入力して検索してください
