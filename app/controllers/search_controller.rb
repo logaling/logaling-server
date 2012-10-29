@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    @query = params[:query]
+    @query = params[:query] || ''
     priority_glossary = signed_in? ? current_user.priority_glossary : nil
 
     search_results = LogalingServer.repository.lookup(@query, priority_glossary).map do |t|
