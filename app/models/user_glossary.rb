@@ -58,7 +58,6 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.add(term.source_term, term.target_term, term.note)
-    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:source_term, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'")
@@ -73,7 +72,6 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.update(term.source_term, term.target_term, new_term.target_term, new_term.note)
-    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:target_term, "term '#{term.source_term}: #{new_term.target_term}' already exists in '#{name}'")
@@ -87,7 +85,6 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     glossary.delete(term.source_term, term.target_term)
-    glossary.index!
 
   rescue Logaling::TermError
     term.errors.add(:target_term, "term '#{term.source_term}: #{term.target_term}' doesn't exists in '#{name}'")
@@ -141,6 +138,5 @@ class UserGlossary < ActiveRecord::Base
 
   def remove_personal_project!
     LogalingServer.repository.remove_personal_project(glossary_name, source_language, target_language)
-    LogalingServer.repository.index
   end
 end

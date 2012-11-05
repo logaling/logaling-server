@@ -17,7 +17,6 @@ module Project
     rescue Logaling::GlossaryAlreadyRegistered
       # do nothing
     end
-    LogalingServer.repository.index
   end
 
   def registered_project
@@ -26,7 +25,6 @@ module Project
 
   def unregister!
     LogalingServer.repository.unregister(registered_project)
-    LogalingServer.repository.index
   end
 
   def sync!
