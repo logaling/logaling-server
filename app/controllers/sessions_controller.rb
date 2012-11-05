@@ -18,4 +18,7 @@ class SessionsController < ApplicationController
     sign_out
     redirect_to root_url, :notice => "Signed out!"
   end
+
+  def failure
+  end
 end
