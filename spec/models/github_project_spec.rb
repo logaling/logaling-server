@@ -1,12 +1,20 @@
 require 'spec_helper'
 
 describe GithubProject do
+  def archived_test_repository_path(repository_name)
+    File.join(File.expand_path(File.dirname(__FILE__)), "..", "data", "#{repository_name}.tar.gz")
+  end
+
+  def decompress_test_repository(repository_name)
+    dest_dir = Dir.mktmpdir
+    system "tar", "xfz", archived_test_repository_path(repository_name), "-C", dest_dir
+    File.join(dest_dir, repository_name)
+  end
+
   before do
-    # FIXME: Because fail 'git clone' on travis, so this line is commentted out.
-    #  see:
-    #  http://stackoverflow.com/questions/4770532/error-when-cloning-git-shallow-repository
-    #subject.stub!(:remote_repository_url)
-    #       .and_return(File.join(Rails.root, '.git'))
+    test_repository_path = decompress_test_repository("test_repository_using_logaling")
+    subject.stub!(:remote_repository_url)
+           .and_return(File.join(test_repository_path, '.git'))
   end
 
   describe 'using logaling' do
