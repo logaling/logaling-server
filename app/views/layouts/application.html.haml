@@ -33,6 +33,8 @@
               = text_field_tag :query, @query, :class => 'search-query', :placeholder => '単語/フレーズを入力'
               %button.btn{ :type => 'submit' }
                 検索
+          %ul.userNav
+            %li= link_to '登録されている用語集', explore_path
         %nav.span4
           %ul.userNav
             - if signed_in?
