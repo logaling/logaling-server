@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 6a87d99749915b2403aae4a8742828e0b3ad6756
+  revision: c5562a79bef7aad1c726acb556d2caa224bc0af6
   specs:
-    logaling-command (0.2.0)
+    logaling-command (0.2.1)
       activesupport
       bundler (>= 1.0)
       nokogiri
