@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: c5562a79bef7aad1c726acb556d2caa224bc0af6
+  revision: cd73f0e8f36ebd602a2f5c71324bc858b54f56e5
   specs:
     logaling-command (0.2.1)
       activesupport
@@ -146,7 +146,7 @@ GEM
       nokogiri (~> 1.4)
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.19)
-    multi_json (1.3.7)
+    multi_json (1.4.0)
     multipart-post (1.1.5)
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)
@@ -214,7 +214,7 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
-    rroonga (2.0.6)
+    rroonga (2.0.8)
       archive-zip
       json
       pkg-config
