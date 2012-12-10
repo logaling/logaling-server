@@ -7,9 +7,9 @@
   %ul.glossariesList
     - @imported_projects.each do |project|
       %li
-        = project.name
+        = link_to_glossary_of_imported_project(project)
         \:
-        = link_to project.description, project.url
+        = project.description
 
   %h2
     個人用語集の一覧
