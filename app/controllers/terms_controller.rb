@@ -8,8 +8,11 @@ class TermsController < ApplicationController
   end
 
   def create
-    @term = GlossaryEntry.new(params[:glossary_entry])
-    @user_glossary.add!(@term)
+    params[:glossary_entry].each do |key, glossary_entry|
+      @term = GlossaryEntry.new(glossary_entry)
+      # TODO: 毎回command側のindexが走るので注意。あとで改善する
+      @user_glossary.add!(@term)
+    end
 
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully added.'
   rescue ArgumentError, Logaling::GlossaryNotFound

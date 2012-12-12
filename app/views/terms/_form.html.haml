@@ -12,9 +12,9 @@
     = f.label :note, :class => 'control-label'
 
   .control-group#term1
-    = f.text_field :source_term, :id => 'glossary_entry_source_term1', :class => 'glossary_entry_source_term'
-    = f.text_field :target_term, :id => 'glossary_entry_target_term1', :class => 'glossary_entry_target_term'
-    = f.text_field :note, :id => 'glossary_entry_note1', :class => 'glossary_entry_note'
+    = f.text_field :source_term, :id => 'source_term1', :class => 'source_term', :name => 'glossary_entry[1][source_term]'
+    = f.text_field :target_term, :id => 'target_term1', :class => 'target_term', :name => 'glossary_entry[1][target_term]'
+    = f.text_field :note, :id => 'note1', :class => 'note', :name => 'glossary_entry[1][note]'
 
   .control-group
     = f.button 'フォームを追加する', :id => 'add_btn', :class => 'btn btn-small', :type => 'button'
