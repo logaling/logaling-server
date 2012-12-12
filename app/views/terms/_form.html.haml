@@ -8,16 +8,16 @@
 
   .control-group
     = f.label :source_term, :class => 'control-label required'
-    .controls
-      = f.text_field :source_term
-  .control-group
     = f.label :target_term, :class => 'control-label required'
-    .controls
-      = f.text_field :target_term
-  .control-group
     = f.label :note, :class => 'control-label'
-    .controls
-      = f.text_field :note
+
+  .control-group#term1
+    = f.text_field :source_term, :id => 'glossary_entry_source_term1', :class => 'glossary_entry_source_term'
+    = f.text_field :target_term, :id => 'glossary_entry_target_term1', :class => 'glossary_entry_target_term'
+    = f.text_field :note, :id => 'glossary_entry_note1', :class => 'glossary_entry_note'
+
+  .control-group
+    = f.button 'フォームを追加する', :id => 'add_btn', :class => 'btn btn-small', :type => 'button'
 
   .control-group
     .controls
