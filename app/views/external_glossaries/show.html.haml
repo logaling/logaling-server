@@ -1,0 +1,13 @@
+- @title = "#{@project.name} #{@glossary.source_language} #{@glossary.target_language} の用語一覧"
+.container
+  %h1
+    = @project.name
+    = @glossary.source_language
+    = @glossary.target_language
+  %p
+    =link_to @project.description, @project.url
+  %h2
+    登録されてる用語一覧
+  - @terms.each do |term|
+    = render :partial => '/glossaries/term', :locals => {:term => term}
+  = paginate @terms

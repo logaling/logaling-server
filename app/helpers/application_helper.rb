@@ -38,4 +38,10 @@ module ApplicationHelper
       link_to(term.decorated_glossary_name, user_glossary_path(owner, user_glossary))
     end
   end
+
+  def link_to_glossary_of_imported_project(project)
+    bilingualr_pair_key = project.bilingualr_pair.join("-")
+    glossary_id = [project.name, bilingualr_pair_key].join("/")
+    link_to project.name, glossary_path(glossary_id)
+  end
 end
