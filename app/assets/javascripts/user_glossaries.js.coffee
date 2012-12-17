@@ -14,6 +14,7 @@ copy_block = (i) ->
   $("#source_term" + i).val ""
   $("#target_term" + i).val ""
   $("#note" + i).val ""
+  $(".text-error").text ""
 
 $ ->
   $("#add_btn").click ->
