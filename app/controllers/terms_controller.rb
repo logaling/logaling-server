@@ -9,6 +9,7 @@ class TermsController < ApplicationController
 
   def create
     params[:glossary_entry].each do |key, glossary_entry|
+      next if glossary_entry[:source_term].empty? && glossary_entry[:target_term].empty?
       @term = GlossaryEntry.new(glossary_entry)
       # TODO: 毎回command側のindexが走るので注意。あとで改善する
       @user_glossary.add!(@term)
