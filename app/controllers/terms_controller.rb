@@ -5,18 +5,20 @@ class TermsController < ApplicationController
 
   def new
     @term = GlossaryEntry.new
+    @terms = [GlossaryEntry.new]
   end
 
   def create
+    @terms = []
     params[:glossary_entry].each do |key, glossary_entry|
       next if glossary_entry[:source_term].empty? && glossary_entry[:target_term].empty?
-      @term = GlossaryEntry.new(glossary_entry)
-      # TODO: 毎回command側のindexが走るので注意。あとで改善する
-      @user_glossary.add!(@term)
+      @terms << GlossaryEntry.new(glossary_entry)
     end
+    @user_glossary.add!(@terms)
 
     redirect_to user_glossary_path(current_user, @user_glossary), notice: 'Term was successfully added.'
-  rescue ArgumentError, Logaling::GlossaryNotFound
+  rescue ArgumentError, Logaling::GlossaryNotFound => e
+    logger.debug e.message
     render action: "new"
   end
 
