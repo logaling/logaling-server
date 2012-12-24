@@ -62,7 +62,7 @@ class UserGlossary < ActiveRecord::Base
     raise Logaling::GlossaryNotFound unless glossary
 
     terms.each do |term|
-      if glossary.bilingual_pair_exists?(term.source_term, term.target_term, term.note)
+      if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
         term.errors.add(:target_term, " #{term.target_term} は既に登録されています")
         raise ArgumentError
       end
