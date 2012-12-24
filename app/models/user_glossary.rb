@@ -56,7 +56,7 @@ class UserGlossary < ActiveRecord::Base
     terms.each do |term|
       valid = false unless term.valid?
     end
-    raise ArgumentError unless valid#terms.all?(&:valid?)
+    raise ArgumentError unless valid
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
@@ -69,7 +69,6 @@ class UserGlossary < ActiveRecord::Base
     end
 
     terms.each do |term|
-      p term
       glossary.add(term.source_term, term.target_term, term.note, false)
     end
     glossary.index!
