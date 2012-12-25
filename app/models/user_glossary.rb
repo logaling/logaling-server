@@ -51,17 +51,27 @@ class UserGlossary < ActiveRecord::Base
     "%s/%s" % [name, "#{source_language}-#{target_language}"]
   end
 
-  def add!(term)
-    raise ArgumentError unless term.valid?
+  def add!(terms)
+    valid = true
+    terms.each do |term|
+      valid = false unless term.valid?
+    end
+    raise ArgumentError unless valid
 
     glossary = find_glossary
     raise Logaling::GlossaryNotFound unless glossary
 
-    glossary.add(term.source_term, term.target_term, term.note)
+    terms.each do |term|
+      if glossary.bilingual_pair_exists?(term.source_term, term.target_term)
+        term.errors.add(:target_term, " #{term.target_term} は既に登録されています")
+        raise ArgumentError
+      end
+    end
 
-  rescue Logaling::TermError
-    term.errors.add(:source_term, "term '#{term.source_term}: #{term.target_term}' already exists in '#{name}'")
-    raise ArgumentError
+    terms.each do |term|
+      glossary.add(term.source_term, term.target_term, term.note, false)
+    end
+    glossary.index!
   end
 
   def update(term, new_term)

@@ -1,23 +1,19 @@
-= form_for @term, url: user_glossary_terms_path(current_user, @user_glossary), :html => { :class => 'form-horizontal' } do |f|
-  -if @term.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@term.errors.count, "error")} prohibited this term from being saved:"
-      %ul
-        - @term.errors.full_messages.each do |msg|
-          %li= msg
-
+= form_for @terms, url: user_glossary_terms_path(current_user, @user_glossary), :html => { :class => 'form-horizontal' } do |f|
   .control-group
     = f.label :source_term, :class => 'control-label required'
-    .controls
-      = f.text_field :source_term
-  .control-group
     = f.label :target_term, :class => 'control-label required'
-    .controls
-      = f.text_field :target_term
-  .control-group
     = f.label :note, :class => 'control-label'
-    .controls
-      = f.text_field :note
+
+  -@terms.each_with_index do |term, i|
+    .control-group{:id => "term#{i+1}"}
+      = text_field_tag :source_term, term.source_term, :id => 'source_term1', :class => 'source_term', :name => "glossary_entry[#{i+1}][source_term]"
+      = text_field_tag :target_term, term.target_term, :id => 'target_term1', :class => 'target_term', :name => "glossary_entry[#{i+1}][target_term]"
+      = text_field_tag :note, term.note,:id => 'note1', :class => 'note', :name => "glossary_entry[#{i+1}][note]"
+      - term.errors.full_messages.each do |msg|
+        %span.text-error= msg
+
+  .control-group
+    = f.button '入力欄を追加', :id => 'add_btn', :class => 'btn btn-small', :type => 'button'
 
   .control-group
     .controls
