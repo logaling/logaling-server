@@ -146,11 +146,7 @@ GEM
       nokogiri (~> 1.4)
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.19)
-<<<<<<< HEAD
     multi_json (1.5.0)
-=======
-    multi_json (1.4.0)
->>>>>>> master
     multipart-post (1.1.5)
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)
