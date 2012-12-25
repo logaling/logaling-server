@@ -7,6 +7,7 @@ class UserGlossariesController < ApplicationController
   def show
     @user = User.find_by_name(params[:user_id])
     @term = GlossaryEntry.new
+    @terms = [GlossaryEntry.new]
     @user_glossary = @user.find_glossary(params[:id])
     @registered_terms = Kaminari.paginate_array(@user_glossary.terms).page(params[:page])
   rescue ActiveRecord::RecordNotFound
