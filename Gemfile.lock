@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/logaling/logaling-command.git
-  revision: 59f3c8a54b2f884339a02e9b0072b9f9d0d5ad33
+  revision: 8a3c4f113a5cd66878db7d34da80e2f54d566947
   specs:
     logaling-command (0.2.1)
       activesupport
@@ -146,7 +146,11 @@ GEM
       nokogiri (~> 1.4)
       webrobots (~> 0.0, >= 0.0.9)
     mime-types (1.19)
+<<<<<<< HEAD
     multi_json (1.5.0)
+=======
+    multi_json (1.4.0)
+>>>>>>> master
     multipart-post (1.1.5)
     net-http-digest_auth (1.1.1)
     net-http-persistent (1.9)

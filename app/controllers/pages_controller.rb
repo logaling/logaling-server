@@ -6,5 +6,6 @@ class PagesController < ApplicationController
   def explore
     @github_projects = GithubProject.all
     @user_glossaries = UserGlossary.all
+    @imported_projects = LogalingServer.repository.imported_projects
   end
 end

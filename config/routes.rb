@@ -30,6 +30,12 @@ LogalingServer::Application.routes.draw do
       :as => :configs
   end
 
+  resources :external_glossaries,
+            :path => 'glossaries',
+            :constraints => {:id => %r{[^/]+/[^/]+}},
+            :only => :show,
+            :as => :glossaries
+
   match '/auth/:provider/callback', to: 'sessions#create'
   match '/auth/failure', to: 'sessions#failure'
   match '/signup' => 'users#new', as: :signup
